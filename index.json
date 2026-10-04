@@ -1,0 +1,137 @@
+{
+	"index": 1,
+	"commit": "bddd0704d98c95de32863bdcee62e9d1adf71095",
+	"games": {
+		"et": {
+			"name": "Enemy Territory",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1985,
+					"sha256": "2d736b5369ef8046edab3346ee1f41b6968d7d0ab0338cbe6fa03f6010918192"
+				},
+				"icon.png": {
+					"size": 12418,
+					"sha256": "0931b4527ba158d294dd59fdadd5a61edb58d90dc604d378dfab39aac5632153"
+				},
+				"icon-licence.txt": {
+					"size": 291,
+					"sha256": "2448ade258dd10738c7c9b1a486966188bf8245fdd0335ad48e5e1dce70b3706"
+				}
+			}
+		},
+		"kingpin": {
+			"name": "Kingpin: Life of Crime",
+			"format": 1,
+			"protocol": "quake2",
+			"files": {
+				"game.json": {
+					"size": 1911,
+					"sha256": "cdc03a8db205c762326438e3a0bb6c2cff6284bd6fdd576d925577dfe231e723"
+				},
+				"icon.png": {
+					"size": 1079,
+					"sha256": "60927fc4a3318d591522e0c3d987f1090e25f1bad9ed3d30dd1248a84c90d243"
+				},
+				"icon-licence.txt": {
+					"size": 286,
+					"sha256": "9ec9d2a9deff92798b3d9ab61bcf54650d446934292889910e9c048bb02f4eac"
+				}
+			}
+		},
+		"quake2": {
+			"name": "Quake II",
+			"format": 1,
+			"protocol": "quake2",
+			"files": {
+				"game.json": {
+					"size": 1460,
+					"sha256": "8eb1841cb8c249b0f141176a7ba6570d4c0dde1dfa6f7573052e2aceefb5f4e6"
+				},
+				"icon.png": {
+					"size": 11841,
+					"sha256": "1bca42e00180b55158004ee9da2e99586746bc09d619c12d9d8547c82af1a443"
+				},
+				"icon-licence.txt": {
+					"size": 487,
+					"sha256": "ddd0a5daeb8fe01b350161169408c218d0587b993a3fb3b6dadac5cacb240926"
+				}
+			}
+		},
+		"quake3": {
+			"name": "Quake III Arena",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 2222,
+					"sha256": "2a0304568149763a09fabb3608ea63d823290671ef8f52067592c30bf9d7e29a"
+				},
+				"icon.png": {
+					"size": 9283,
+					"sha256": "46718505ad64fb47b07245c526c6f69afef2e0b27f97bbae631ef9cb7e969c66"
+				},
+				"icon-licence.txt": {
+					"size": 15715,
+					"sha256": "6d0b8e2b51fc90bf205855dd54f6bb80d67f4adcf641815af03aa12890eb19f0"
+				}
+			}
+		},
+		"rtcw": {
+			"name": "Return to Castle Wolfenstein",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1801,
+					"sha256": "d38a6878986647807061700c7f72ff470d007c924b17698e3994a14105189f75"
+				},
+				"icon.png": {
+					"size": 13872,
+					"sha256": "53e6e5d71b4bfbb1ceb49ac37b4cbaefcdeaa0df0e08ae0a0e0dd53187d1763d"
+				},
+				"icon-licence.txt": {
+					"size": 36486,
+					"sha256": "e7a938991ed98ad8de562cef2e135f0d764fcea1d69dd9dab437401b0c723ee8"
+				}
+			}
+		},
+		"ut2004": {
+			"name": "Unreal Tournament 2004",
+			"format": 1,
+			"protocol": "unreal2",
+			"files": {
+				"game.json": {
+					"size": 2750,
+					"sha256": "cc5bcbac097bc04aa82433b9e479c7baae7599413bc357c6f19012e78f9ad535"
+				},
+				"icon.png": {
+					"size": 81878,
+					"sha256": "082ae39105c8e01e0a6c966d8b4a52aa31c21ebe882cff3ba0004a177c5ad871"
+				},
+				"icon-licence.txt": {
+					"size": 495,
+					"sha256": "837448a8b74de65fdeecd330cae06c102a5caf21868bc8761f0d1ef0fe47ba4a"
+				}
+			}
+		}
+	},
+	"protocols": {
+		"quake2": {
+			"api": 1,
+			"size": 5450,
+			"sha256": "3eda6c07839ae3576c43bca6c2c12963a2c04ce6d269fc3709a8f0b1484c7cbc"
+		},
+		"quake3": {
+			"api": 1,
+			"size": 6107,
+			"sha256": "09fb3856b6b422de596aa8999dee5157d2820bd1dd61778e0a44b415d1c7bdaa"
+		},
+		"unreal2": {
+			"api": 1,
+			"size": 10482,
+			"sha256": "deb9119bc0c7b4165e510018f9c7a91cea365ca36e87a47a01857806674ac51f"
+		}
+	}
+}
