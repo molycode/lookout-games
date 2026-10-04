@@ -1,0 +1,26 @@
+# Rewrites index.json after games or protocols change on main, so Lookout downloads what was merged.
+name: Index
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ "games/**", "protocols/**", "tools/make-index.py" ]
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/make-index.py
+      # A push made with the workflow's own token starts no workflow, so this commit does not run it again.
+      - name: Commit the index
+        run: |
+          if ! git diff --quiet -- index.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --message "Index for $(git rev-parse --short HEAD)" -- index.json
+            git push
+          fi

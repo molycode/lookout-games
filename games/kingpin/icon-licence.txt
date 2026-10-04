@@ -1,0 +1,7 @@
+Kingpin: Life of Crime icon (icon.png)
+
+The game's own 32 x 32 icon, as its Steam release carries it, scaled to 128 x 128 by repeating each pixel 4 x 4.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.

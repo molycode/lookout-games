@@ -1,0 +1,55 @@
+{
+	"format": 1,
+	"name": "Unreal Tournament 2004",
+	"protocol": "unreal2",
+	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
+	"queryPortOffset": 1,
+	"//text": "Names colour their parts with ESC and three bytes of red, green and blue; servers send UTF-8 as well as Latin-1.",
+	"text": { "encoding": "utf8OrWindows1252", "colourCodes": { "escape": "\u001b", "codes": "rgb" } },
+	"//masters": "Epic's masters closed in 2023; the community runs these, and each lists servers the other does not.",
+	"masters": [
+		{ "host": "ut2004master.333networks.com", "port": 28902 },
+		{ "host": "utmaster.openspy.net", "port": 28902 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "map",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"//mods": "The game type's class, so a mod's own game type, such as Freon or TeamArenaMaster, can be filtered for.",
+		"mods": [ "gametype" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "xDeathMatch", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "xTeamGame", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "xCTFGame", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "xVehicleCTFGame", "label": "Vehicle CTF" },
+		{ "key": "gametype", "value": "ONSOnslaughtGame", "label": "Onslaught" },
+		{ "key": "gametype", "value": "ASGameInfo", "label": "Assault" },
+		{ "key": "gametype", "value": "xBombingRun", "label": "Bombing Run" },
+		{ "key": "gametype", "value": "xDoubleDom", "label": "Double Domination" },
+		{ "key": "gametype", "value": "xLastManStandingGame", "label": "Last Man Standing" },
+		{ "key": "gametype", "value": "xMutantGame", "label": "Mutant" },
+		{ "key": "gametype", "value": "Invasion", "label": "Invasion" }
+	],
+	"launch": {
+		"//desktopFiles": "From OldUnreal's installer, the AUR and nixpkgs packages, and Flathub; each passes its arguments to the game.",
+		"desktopFiles": [ "OldUnreal-UT2004.desktop", "ut2004.desktop", "com.epicgames.ut2004.desktop" ],
+		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+		"installDir": ".local/share/OldUnreal/UT2004",
+		"program": "System/UT2004",
+		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+	},
+	"join": {
+		"//arguments": "The address is the game's URL; each option follows it after a '?'.",
+		"arguments": [ "{address}" ],
+		"passwordArguments": [ "{address}?password={password}" ],
+		"password": {
+			"//maxLength": "The game reads the password from the URL whole, so only the format's own limit applies.",
+			"maxLength": 1024,
+			"//refusedCharacters": "'?' starts the next option, '#' a portal, and a space ends the URL.",
+			"refusedCharacters": " ?#"
+		}
+	}
+}

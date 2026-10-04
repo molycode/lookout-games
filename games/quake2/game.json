@@ -1,0 +1,36 @@
+{
+	"format": 1,
+	"name": "Quake II",
+	"protocol": "quake2",
+	"//text": "Quake 2 engines mark coloured text with the high bit, which only their own font can show.",
+	"text": { "encoding": "ascii7" },
+	"masters": [
+		{ "host": "master.quakeservers.net", "port": 27900 },
+		{ "host": "master.maraakate.org", "port": 27900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"maxPlayers": "maxclients",
+		"//password": "needpass is a bitmask: 1 a player password, 2 a spectator password.",
+		"password": "needpass",
+		"//mods": "Mods often put a version in gamename instead of their title.",
+		"mods": [ "game", "gamename" ]
+	},
+	"modes": [
+		{ "key": "ctf", "value": "1", "label": "Capture the Flag" },
+		{ "key": "coop", "value": "1", "label": "Co-op" },
+		{ "key": "deathmatch", "value": "1", "label": "Deathmatch" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"//maxLength": "Info_SetValueForKey refuses 64 characters or more, so a longer password would never reach the server.",
+			"maxLength": 63,
+			"//refusedCharacters": "kpded2 rebuilds \"set password %s\", so a space splits the value; iortcw cuts the command line at every '+' and ends a token at \"//\" or \"/*\"; both refuse '\"', '\\' and ';' in userinfo, and Quake 2 expands '$'.",
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

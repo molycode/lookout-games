@@ -1,0 +1,49 @@
+{
+	"format": 1,
+	"name": "Enemy Territory",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"//colourCodes": "ET: Legacy takes any printable ASCII but a caret after the escape; this is its g_color_table.",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "printable",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ff8000", "#808080", "#bfbfbf", "#bfbfbf", "#008000", "#808000", "#000080", "#800000",
+				"#804000", "#ff991a", "#008080", "#800080", "#0080ff", "#8000ff", "#3399cc", "#ccffcc",
+				"#006633", "#ff0033", "#b31a1a", "#993300", "#cc9933", "#999933", "#ffffbf", "#ffff80"
+			]
+		}
+	},
+	"protocolOptions": { "masterQuery": "84 empty full" },
+	"masters": [
+		{ "host": "etmaster.idsoftware.com", "port": 27950 },
+		{ "host": "etmaster.etlegacy.com", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "2", "label": "Objective" },
+		{ "key": "g_gametype", "value": "3", "label": "Stopwatch" },
+		{ "key": "g_gametype", "value": "4", "label": "Campaign" },
+		{ "key": "g_gametype", "value": "5", "label": "Last Man Standing" },
+		{ "key": "g_gametype", "value": "6", "label": "Map Voting" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"//maxLength": "Info_SetValueForKey refuses 64 characters or more, so a longer password would never reach the server.",
+			"maxLength": 63,
+			"//refusedCharacters": "kpded2 rebuilds \"set password %s\", so a space splits the value; iortcw cuts the command line at every '+' and ends a token at \"//\" or \"/*\"; both refuse '\"', '\\' and ';' in userinfo, and Quake 2 expands '$'.",
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

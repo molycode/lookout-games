@@ -1,0 +1,29 @@
+# Checks every game and protocol with the latest Lookout release, as `lookout --check` does on a contributor's machine.
+name: Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get the latest Lookout
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo molycode/lookout --pattern "lookout-*-x86_64.tar.xz" --dir "$RUNNER_TEMP/lookout"
+          tar -xJf "$RUNNER_TEMP"/lookout/lookout-*-x86_64.tar.xz -C "$RUNNER_TEMP/lookout"
+      - name: Check the games and protocols
+        run: |
+          lookout="$(find "$RUNNER_TEMP/lookout" -type f -name lookout -perm -u+x | head -n 1)"
+
+          if ! "$lookout" --help | grep -q -- "--check"; then
+            echo "::notice::The latest Lookout release cannot check games yet (it needs 1.2 or newer), so nothing was checked."
+            exit 0
+          fi
+
+          "$lookout" --check .

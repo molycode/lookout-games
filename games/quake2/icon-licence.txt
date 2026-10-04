@@ -1,0 +1,10 @@
+Quake II icon (icon.png)
+
+Drawn by deuxsonic for Yamagi Quake II and recoloured there to the original icon's teal:
+https://github.com/yquake2/yquake2/tree/master/stuff/icon (Quake2.svg, exported there as Quake2.png).
+Scaled from 512 x 512 to 256 x 256.
+
+Licence: none stated beyond the author's "If you like it you can use it."
+(https://github.com/yquake2/yquake2/issues/106).
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.

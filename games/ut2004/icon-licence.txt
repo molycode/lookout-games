@@ -1,0 +1,10 @@
+Unreal Tournament 2004 icon (icon.png)
+
+The Mac application's icon from OldUnreal's UT2004 patch 3374, whose bundle names Epic Games as its copyright holder:
+https://github.com/OldUnreal/UT2004Patches/releases/tag/3374-preview-23
+(OldUnreal-UT2004Patch3374-macOS.dmg, UT2004.app/Contents/Resources/UT2004.icns).
+Converted from ICNS to PNG at its 256 x 256 size.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.

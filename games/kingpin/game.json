@@ -1,0 +1,44 @@
+{
+	"format": 1,
+	"name": "Kingpin: Life of Crime",
+	"protocol": "quake2",
+	"//text": "Quake 2 engines mark coloured text with the high bit, which only their own font can show.",
+	"text": { "encoding": "ascii7" },
+	"//masters": "master1 and master2.kingpin.info speak only GameSpy's TCP protocol, never the Quake 2 query.",
+	"masters": [
+		{ "host": "master.kingpin.info", "port": 27900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"maxPlayers": "maxclients",
+		"password": "password",
+		"//mods": "The gamename is the mod's own title (\"Monkey Mod v2.1\").",
+		"mods": [ "gamename", "game" ]
+	},
+	"//modes": "In order: bagman sets deathmatch as well as teamplay.",
+	"modes": [
+		{ "key": "coop", "value": "1", "label": "Co-op" },
+		{ "key": "teamplay", "value": "1", "label": "Bagman" },
+		{ "key": "deathmatch", "value": "1", "label": "Deathmatch" }
+	],
+	"launch": {
+		"//desktopFiles": "Only names seen on real installs; Steam's Kingpin.desktop runs a steam:// URL, which drops the connect arguments.",
+		"desktopFiles": [ "kingpin-native.desktop" ],
+		"installDir": "Games/Kingpin",
+		"program": "run-game.sh",
+		"requiredFiles": [ "kingpin.x86", "main/pak0.pak" ]
+	},
+	"join": {
+		"//arguments": "Each its own argument: run-game.sh recognises a join by \" +connect \".",
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"//maxLength": "Info_SetValueForKey refuses 64 characters or more, so a longer password would never reach the server.",
+			"maxLength": 63,
+			"//refusedCharacters": "kpded2 rebuilds \"set password %s\", so a space splits the value; iortcw cuts the command line at every '+' and ends a token at \"//\" or \"/*\"; both refuse '\"', '\\' and ';' in userinfo, and Quake 2 expands '$'.",
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

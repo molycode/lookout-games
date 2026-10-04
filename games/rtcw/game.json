@@ -1,0 +1,48 @@
+{
+	"format": 1,
+	"name": "Return to Castle Wolfenstein",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"//colourCodes": "ioquake3 and iortcw take only letters and digits after the escape; a caret before anything else is shown.",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "60 empty full" },
+	"masters": [
+		{ "host": "wolfmaster.idsoftware.com", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "5", "label": "Objective" },
+		{ "key": "g_gametype", "value": "6", "label": "Stopwatch" },
+		{ "key": "g_gametype", "value": "7", "label": "Checkpoint" },
+		{ "key": "g_gametype", "value": "8", "label": "Capture & Hold" }
+	],
+	"launch": {
+		"desktopFiles": [ "id-linux-rtcw-mp.desktop" ],
+		"installDir": "Games/id-linux",
+		"program": "rtcw-mp",
+		"requiredFiles": [ "kit/id-run", "rtcw/.installed-rtcw-mp" ]
+	},
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"//maxLength": "Info_SetValueForKey refuses 64 characters or more, so a longer password would never reach the server.",
+			"maxLength": 63,
+			"//refusedCharacters": "kpded2 rebuilds \"set password %s\", so a space splits the value; iortcw cuts the command line at every '+' and ends a token at \"//\" or \"/*\"; both refuse '\"', '\\' and ';' in userinfo, and Quake 2 expands '$'.",
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

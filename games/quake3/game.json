@@ -1,0 +1,54 @@
+{
+	"format": 1,
+	"name": "Quake III Arena",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"//colourCodes": "ioquake3 and iortcw take only letters and digits after the escape; a caret before anything else is shown.",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "68 empty full" },
+	"masters": [
+		{ "host": "master.quake3arena.com", "port": 27950 },
+		{ "host": "master.ioquake3.org", "port": 27950 },
+		{ "host": "dpmaster.deathmask.net", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "0", "label": "Free for All" },
+		{ "key": "g_gametype", "value": "1", "label": "Tournament" },
+		{ "key": "g_gametype", "value": "2", "label": "Single Player" },
+		{ "key": "g_gametype", "value": "3", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "4", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "5", "label": "One Flag CTF" },
+		{ "key": "g_gametype", "value": "6", "label": "Overload" },
+		{ "key": "g_gametype", "value": "7", "label": "Harvester" }
+	],
+	"//foreignServers": "Urban Terror and OpenArena list themselves on Quake III's masters.",
+	"foreignServers": [
+		{ "key": "gamename", "value": "q3urt42" },
+		{ "key": "gamename", "value": "q3urt43" },
+		{ "key": "gamename", "value": "baseoa" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"//maxLength": "Info_SetValueForKey refuses 64 characters or more, so a longer password would never reach the server.",
+			"maxLength": 63,
+			"//refusedCharacters": "kpded2 rebuilds \"set password %s\", so a space splits the value; iortcw cuts the command line at every '+' and ends a token at \"//\" or \"/*\"; both refuse '\"', '\\' and ';' in userinfo, and Quake 2 expands '$'.",
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
