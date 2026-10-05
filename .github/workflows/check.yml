@@ -10,7 +10,19 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      # A pull request is checked out as its merge commit; two deep reaches the base it merges into.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      # Lookout trusts the index's commit and checksums, and raw.githubusercontent.com would serve a merged one for
+      # minutes before the Index workflow replaces it.
+      - name: Leave index.json to the Index workflow
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet HEAD^1 HEAD -- index.json; then
+            echo "::error file=index.json::index.json is written by the Index workflow after a merge; leave it out of the pull request."
+            exit 1
+          fi
       - name: Get the latest Lookout
         env:
           GH_TOKEN: ${{ github.token }}

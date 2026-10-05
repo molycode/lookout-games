@@ -13,7 +13,8 @@ removes it.
   it comes from and under what licence. A game without an icon is shown with a stand-in.
 - `protocols/<name>.lua`: a protocol script, which the games that speak it name. It runs in a sandbox and only turns
   bytes into requests and replies; Lookout does the networking.
-- `index.json`: what Lookout downloads from. `tools/make-index.py` writes it after every merge; never edit it by hand.
+- `index.json`: what Lookout downloads from. `tools/make-index.py` writes it after every merge; never edit it by
+  hand, and a pull request that changes it is refused.
 
 ## Adding a game
 
