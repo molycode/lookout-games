@@ -1,0 +1,11 @@
+Unreal icon (icon.png)
+
+The Mac application's icon from OldUnreal's Unreal patch 227k_15, whose bundle names Epic Games as its copyright
+holder:
+https://github.com/OldUnreal/Unreal-testing/releases/tag/v227k_15
+(OldUnreal-UnrealPatch227k-macOS.dmg, Unreal.app/Contents/Resources/Unreal2.icns).
+Converted from ICNS to PNG at its only size, 512 x 512, and scaled to 256 x 256.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.
