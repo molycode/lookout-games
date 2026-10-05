@@ -1,0 +1,52 @@
+{
+	"format": 1,
+	"name": "Unvanquished",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "printable",
+			"palette": [
+				"#333333", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ff8000", "#808080", "#bfbfbf", "#bfbfbf", "#008000", "#808000", "#000080", "#800000",
+				"#804000", "#ff991a", "#008080", "#800080", "#0080ff", "#8000ff", "#3399cc", "#ccffcc",
+				"#006633", "#ff0033", "#b31a1a", "#993300", "#cc9933", "#999933", "#ffffbf", "#ffff80"
+			],
+			"hexCodes": [ "xRGB", "XRGB", "#RRGGBB" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "86 empty full" },
+	"masters": [
+		{ "host": "master.unvanquished.net", "port": 27950 },
+		{ "host": "master2.unvanquished.net", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass"
+	},
+	"//foreignServers": "A Smokin' Guns port to Unvanquished's engine lists itself on these masters.",
+	"foreignServers": [
+		{ "key": "gamename", "value": "smokinguns" }
+	],
+	"launch": {
+		"//desktopFiles": "From Flathub, the updater and the AUR; each passes its arguments to the game.",
+		"desktopFiles": [ "net.unvanquished.Unvanquished.desktop", "unvanquished.desktop" ],
+		"installDir": ".local/share/unvanquished/base",
+		"program": "updater",
+		"requiredFiles": [ "updater", "daemon" ]
+	},
+	"join": {
+		"//arguments": "The desktop entries and the updater take the server as one unv:// URL.",
+		"arguments": [ "unv://{address}" ],
+		"passwordArguments": [ "unv://{password}@{address}" ],
+		"password": {
+			"//maxLength": "The client copies the password into 64 bytes.",
+			"maxLength": 63,
+			"//refusedCharacters": "The updater lets only letters, digits and ./-]_:@ through, and the password ends at the first @.",
+			"refusedCharacters": " !\"#$%&'()*+,;<=>?@[\\^`{|}~"
+		}
+	}
+}
