@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "d82980785bfd7eb2fd20a7eb75e41951deb1793a",
+	"commit": "e26e4a04f1669b77e2dfdf5b4a2ec03caddb641a",
 	"games": {
 		"et": {
 			"name": "Enemy Territory",
@@ -37,6 +37,25 @@
 				"icon-licence.txt": {
 					"size": 286,
 					"sha256": "9ec9d2a9deff92798b3d9ab61bcf54650d446934292889910e9c048bb02f4eac"
+				}
+			}
+		},
+		"openarena": {
+			"name": "OpenArena",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1824,
+					"sha256": "94eb17667fb68f16dba622f11734884571c32157ec32fd7b0aa01f35833f8542"
+				},
+				"icon.png": {
+					"size": 18432,
+					"sha256": "727514817d9d056608f9d76805642de05d13b25b177de10d8a810d554c377425"
+				},
+				"icon-licence.txt": {
+					"size": 15820,
+					"sha256": "b37f9546cf5ae43f8f490b948d1c925e1327a4d812124c3de6d0651667b4977b"
 				}
 			}
 		},
