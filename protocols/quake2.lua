@@ -87,22 +87,16 @@ local function parseNumber(line, position, last, isSigned, max)
 	return isNegative and -value or value, index
 end
 
--- <score> <ping> "<name>"; some mods put more numbers before the name, so the name is what the quotes enclose.
+-- <score> <ping> "<name>"; some mods put more numbers before the name, so the name is what the quotes enclose. Alien
+-- Arena puts more after it, and no name holds a quote: Info_SetValueForKey refuses one.
 local function parsePlayerLine(line)
 	local nameStart = string.find(line, "\"", 1)
-	local nameEnd = nameStart
-	local quote = (nameStart ~= nil) and string.find(line, "\"", nameStart + 1) or nil
-
-	while quote ~= nil do
-		nameEnd = quote
-		quote = string.find(line, "\"", quote + 1)
-	end
-
+	local nameEnd = (nameStart ~= nil) and string.find(line, "\"", nameStart + 1) or nil
 	local last = (nameStart ~= nil) and (nameStart - 1) or #line
 	local score, afterScore = parseNumber(line, 1, last, true, MaxScore)
 	local ping = (score ~= nil) and parseNumber(line, afterScore, last, false, MaxPing) or nil
 
-	if nameStart == nil or nameEnd == nameStart or ping == nil then
+	if nameStart == nil or nameEnd == nil or ping == nil then
 		return nil
 	end
 
