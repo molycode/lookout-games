@@ -1,0 +1,42 @@
+{
+	"format": 1,
+	"name": "Call of Duty",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"//protocolOptions": "Version 1.5 servers list under protocol 6; 1.1 servers, which 1.5 cannot join, under 1.",
+	"protocolOptions": { "masterQuery": "6 full empty" },
+	"masters": [
+		{ "host": "codmaster.activision.com", "port": 20510 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "pswrd",
+		"mods": [ "fs_game" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "dm", "label": "Deathmatch" },
+		{ "key": "g_gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "sd", "label": "Search and Destroy" },
+		{ "key": "g_gametype", "value": "re", "label": "Retrieval" },
+		{ "key": "g_gametype", "value": "bel", "label": "Behind Enemy Lines" },
+		{ "key": "g_gametype", "value": "hq", "label": "Headquarters" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
