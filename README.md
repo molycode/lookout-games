@@ -29,6 +29,13 @@ game you save there is in `~/.local/share/lookout/games/<key>/game.json`, ready 
 A game on a protocol that is not here yet adds `protocols/<name>.lua` as well. Captured replies from a real master and
 server, as Lookout's protocol tests use them, make it much easier to review.
 
+A protocol script can speak almost any query, but what `game.json` can say is fixed by Lookout: how names are coloured,
+how a server's rules are matched, what a mode or a launch section can hold. When a game needs something the format
+cannot express, open an issue on [Lookout](https://github.com/molycode/lookout/issues) naming what is missing and a
+server that shows it, rather than working around it here. A field added for it comes with a Lookout release and a
+higher `format`; a game that uses it sets that `format`, and an older Lookout offers it as needing a newer version
+instead of failing on it.
+
 Before opening a pull request, check the folder with Lookout 1.2 or newer:
 
     lookout --check /path/to/lookout-games
