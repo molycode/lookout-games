@@ -1,0 +1,15 @@
+Tremulous icon (icon.png)
+
+The desktop icon of GrangerHub's Tremulous, the game's maintained release, imported by Cengiz Gunay in 2025 with the
+packaging files of its Flatpak and Arch Linux packages (#130):
+https://github.com/GrangerHub/tremulous/blob/master/misc/io.github.grangerhub.Tremulous.png
+At 128 x 128, as published.
+
+Licence: the Creative Commons Attribution-ShareAlike 2.5 licence, under which
+https://github.com/GrangerHub/tremulous/blob/master/COPYING puts Tremulous's media.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.
+
+
+Licence text: https://creativecommons.org/licenses/by-sa/2.5/
+Attribution: the Tremulous developers, https://github.com/GrangerHub/tremulous; unchanged.
