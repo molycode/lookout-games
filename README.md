@@ -36,6 +36,10 @@ Before opening a pull request, check the folder with Lookout 1.2 or newer:
 It prints every problem Lookout would have with the files and exits with an error when there is one. The same check
 runs on every pull request.
 
+Once the pull request is merged, Lookout offers the game in Download games within minutes. Download it, then let your
+own copy go: until you do, Lookout takes it for your changes to the download. "Revert to downloaded…" in the game's
+editor removes it, or delete `~/.local/share/lookout/games/<key>` yourself.
+
 ## Licence
 
 The descriptions and scripts are MIT licensed, see `LICENSE`. Each icon carries its own licence in its
