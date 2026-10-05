@@ -1,0 +1,46 @@
+{
+	"format": 1,
+	"name": "Smokin' Guns",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "printable",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ff8000", "#808080", "#bfbfbf", "#bfbfbf", "#008000", "#808000", "#000080", "#800000",
+				"#804000", "#ff991a", "#008080", "#800080", "#0080ff", "#8000ff", "#3399cc", "#ccffcc",
+				"#006633", "#ff0033", "#b31a1a", "#993300", "#cc9933", "#999933", "#ffffbf", "#ffff80"
+			]
+		}
+	},
+	"protocolOptions": { "masterQuery": "68 empty full" },
+	"masters": [
+		{ "host": "master.smokin-guns.org", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "0", "label": "Deathmatch" },
+		{ "key": "g_gametype", "value": "1", "label": "Duel" },
+		{ "key": "g_gametype", "value": "2", "label": "Single Player" },
+		{ "key": "g_gametype", "value": "3", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "4", "label": "Round Teamplay" },
+		{ "key": "g_gametype", "value": "5", "label": "Bank Robbery" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
