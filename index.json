@@ -1,7 +1,119 @@
 {
 	"index": 1,
-	"commit": "e26e4a04f1669b77e2dfdf5b4a2ec03caddb641a",
+	"commit": "59841e1f3cf974e24329d62671f8a719353fd7de",
 	"games": {
+		"alienarena": {
+			"name": "Alien Arena",
+			"format": 1,
+			"protocol": "quake2",
+			"files": {
+				"game.json": {
+					"size": 1226,
+					"sha256": "2ec0e33fd811fda0f6c55a426081eb89ad19ae9cab4b68925b5fc333f3e1cff4"
+				},
+				"icon.png": {
+					"size": 62461,
+					"sha256": "7ecc16b82abd56680728e7f24270a2fbbfacf6c62c24e920e722c5dd5b0b2a7c"
+				},
+				"icon-licence.txt": {
+					"size": 15840,
+					"sha256": "925fc9c656dd67e4052d15b81b4e32e42b18b2c49bd1f97c83434746054174d4"
+				}
+			}
+		},
+		"bf1942": {
+			"name": "Battlefield 1942",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1327,
+					"sha256": "f77ad51e692e51912940cbf6acf897f0fa84ffc39271d72ca34e681a7616473a"
+				}
+			}
+		},
+		"cod": {
+			"name": "Call of Duty",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1363,
+					"sha256": "463b555cae967e8b342d30920800387c664c21a6ca8ab6e1dc3f571ef865fae0"
+				}
+			}
+		},
+		"cod2": {
+			"name": "Call of Duty 2",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1537,
+					"sha256": "33b57950b3b1dc8e20f59539766dda9c8f57e70003f77f78cc1e909c06f65d33"
+				}
+			}
+		},
+		"cod4": {
+			"name": "Call of Duty 4: Modern Warfare",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1328,
+					"sha256": "674b275f50e511838ce08a1551fda2348c952696a31ed834da22a28b255a935e"
+				}
+			}
+		},
+		"coduo": {
+			"name": "Call of Duty: United Offensive",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1477,
+					"sha256": "28d1e5e4bd85292ebb159009ca071b91c3763d29a1719ff80ab20e75c9b77d2f"
+				}
+			}
+		},
+		"deusex": {
+			"name": "Deus Ex",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1039,
+					"sha256": "081e00e5e8e4d0665d143478f756f873419725d436887a02c58d0515b9185ea3"
+				},
+				"icon.png": {
+					"size": 17757,
+					"sha256": "e570dd1d863a7786ec85915398181a85f7c24e59ca757154eea858ee2203b28d"
+				},
+				"icon-licence.txt": {
+					"size": 411,
+					"sha256": "0fe7cb0e5427c1eb0ebe396b6691bcc814662615ea6581b97951d61018ab087c"
+				}
+			}
+		},
+		"eliteforce": {
+			"name": "Star Trek Voyager: Elite Force",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1384,
+					"sha256": "59c3abaf08f4358f973aeaf5a22b428cc4352f8e5effb74a6c6078b4c74c9644"
+				},
+				"icon.png": {
+					"size": 23151,
+					"sha256": "9abbcb40e431ba14b3145145a9862f117bb90cf978e890938304934f8d84ce46"
+				},
+				"icon-licence.txt": {
+					"size": 15769,
+					"sha256": "411b0b93ccd68688ff2e9ecb1bfa31ebaf2866aae9b2d1bcc2fd72f697f429f5"
+				}
+			}
+		},
 		"et": {
 			"name": "Enemy Territory",
 			"format": 1,
@@ -21,6 +133,44 @@
 				}
 			}
 		},
+		"jk2": {
+			"name": "Star Wars Jedi Knight II: Jedi Outcast",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1674,
+					"sha256": "93a89a913951e5c48a1991d6023976b1054f5f81cfc27780f853352eb42e04ad"
+				},
+				"icon.png": {
+					"size": 86008,
+					"sha256": "ac8f5b552db93d845e4831f79056a07737bc14d79bf390be1230340617fb5ac9"
+				},
+				"icon-licence.txt": {
+					"size": 1649,
+					"sha256": "ef1d89a92ebf47aeda683e729ae0d1c82dfb3d16a586559f5f4cbff8b68344a2"
+				}
+			}
+		},
+		"jka": {
+			"name": "Star Wars Jedi Knight: Jedi Academy",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1789,
+					"sha256": "d9e07401bbe62147bd436cedf010a8c2e0f66d412158a7bcbe7eb502a2d74e87"
+				},
+				"icon.png": {
+					"size": 84734,
+					"sha256": "15ba9c753aa728e58e9c76f4f28e37774899db42e37eb9eaed547a42acb28677"
+				},
+				"icon-licence.txt": {
+					"size": 1658,
+					"sha256": "316d3b6b9fe1ed992228abb73a9aff53bbea7a69d301fe6954e5db9b9c03af09"
+				}
+			}
+		},
 		"kingpin": {
 			"name": "Kingpin: Life of Crime",
 			"format": 1,
@@ -37,6 +187,44 @@
 				"icon-licence.txt": {
 					"size": 286,
 					"sha256": "9ec9d2a9deff92798b3d9ab61bcf54650d446934292889910e9c048bb02f4eac"
+				}
+			}
+		},
+		"mohaa": {
+			"name": "Medal of Honor: Allied Assault",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1165,
+					"sha256": "095215d31d50e76b5c54823ae65fe7edec2e5cc582d8a879e0c177382d9628f0"
+				},
+				"icon.png": {
+					"size": 38402,
+					"sha256": "16926989ab98b74469e3722ba3fa98132aea22cabab475464e97bedd85c5db84"
+				},
+				"icon-licence.txt": {
+					"size": 15775,
+					"sha256": "52d15bb9f4c7861cc424ab3277ff9c64c728e6f0a6e04cbafd60630a86808e32"
+				}
+			}
+		},
+		"nexuiz": {
+			"name": "Nexuiz",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1170,
+					"sha256": "4b8362a8910d7634d0d34905ec7fabeb343d92cbe3c0dabfdb42d833607e6878"
+				},
+				"icon.png": {
+					"size": 23426,
+					"sha256": "196a3e053c349b44bd355ca5c14d5546a0044291c89ffca497f54d337d42d02b"
+				},
+				"icon-licence.txt": {
+					"size": 15798,
+					"sha256": "7da555c694a0c2fcd117015526eb14c93e7d43daf370c769911420ee019f212f"
 				}
 			}
 		},
@@ -97,6 +285,25 @@
 				}
 			}
 		},
+		"quakeworld": {
+			"name": "QuakeWorld",
+			"format": 1,
+			"protocol": "quakeworld",
+			"files": {
+				"game.json": {
+					"size": 1247,
+					"sha256": "65bbb67bacca79388d499e36be2fddf0da873b80c25f5bd1bc4fbb04bfd523c4"
+				},
+				"icon.png": {
+					"size": 40497,
+					"sha256": "d93db698ae6f558c2258fda352c5d489fd25a826ebbfb8fe410f36ef0d2af264"
+				},
+				"icon-licence.txt": {
+					"size": 15731,
+					"sha256": "d32aca4bc6d090d36d0908c18fb4a28bf726b203d2689465f90063803988afdf"
+				}
+			}
+		},
 		"rtcw": {
 			"name": "Return to Castle Wolfenstein",
 			"format": 1,
@@ -113,6 +320,123 @@
 				"icon-licence.txt": {
 					"size": 36486,
 					"sha256": "e7a938991ed98ad8de562cef2e135f0d764fcea1d69dd9dab437401b0c723ee8"
+				}
+			}
+		},
+		"rune": {
+			"name": "Rune",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1157,
+					"sha256": "30b6affd2b8f52bfdb227e6d7e3c1fdfb59d564da85d64409b09a098abcef1d1"
+				}
+			}
+		},
+		"smokinguns": {
+			"name": "Smokin' Guns",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1513,
+					"sha256": "e64b939c9497e52f3be510f871c7778e1e12d14710cc03c640785dcb4d3057bc"
+				},
+				"icon.png": {
+					"size": 69355,
+					"sha256": "a415154f7573140bcbb5772ca96d3129e71e405705836a84fb6b3a6caf5f7cda"
+				},
+				"icon-licence.txt": {
+					"size": 15676,
+					"sha256": "4a26ad1d05425e70ffb48432269be9753f8175dead64f0d23f4964cb7b9e2a80"
+				}
+			}
+		},
+		"sof2": {
+			"name": "Soldier of Fortune II: Double Helix",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1463,
+					"sha256": "b4dd262060374c0d54fdefc79af87a2b0c0632de1fdaef067fca8c7d661b0fa5"
+				}
+			}
+		},
+		"tremulous": {
+			"name": "Tremulous",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 2421,
+					"sha256": "45c3c972d9ae8b942c88c8aa11a95adad9e22d108cad65254d42f5c9808fab47"
+				},
+				"icon.png": {
+					"size": 20603,
+					"sha256": "b8b1b3b57afb1653480ae090e08ddf08453a49a5e9c1d4eec314c23c111f619b"
+				},
+				"icon-licence.txt": {
+					"size": 755,
+					"sha256": "e2b4266b944fb63bd697ae914eda9d9cf27b7c6fe315e1b4702e7c60ca02c6a9"
+				}
+			}
+		},
+		"unreal": {
+			"name": "Unreal",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1841,
+					"sha256": "9647a6b93de382c8b66c37c890a01279f8d3f3be056bbbd843ab2708d6a5be05"
+				},
+				"icon.png": {
+					"size": 104288,
+					"sha256": "3969a43c6886399996ba4d0c328db46aa81c9e5bdc21de5a8fab8ba50072d209"
+				},
+				"icon-licence.txt": {
+					"size": 508,
+					"sha256": "dd2b1a06420769d30d956c3e2ac35c3cfa556cd7b807016c63974c77982283b7"
+				}
+			}
+		},
+		"unvanquished": {
+			"name": "Unvanquished",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1909,
+					"sha256": "eeb8eacf792558ce630e73c3da9523854ffebdbb1e5cf7bac53b1738da4c6748"
+				},
+				"icon.png": {
+					"size": 81883,
+					"sha256": "f20ad1a8b7bffcf030b7ce31a53fb80f9ce9fd078533df59342a08fcee5c122d"
+				},
+				"icon-licence.txt": {
+					"size": 691,
+					"sha256": "1572c29ca6093b18346a7b66b09410195c8ecf6956b1a509b1a547b135bde122"
+				}
+			}
+		},
+		"urbanterror": {
+			"name": "Urban Terror",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 2032,
+					"sha256": "6360cfccfa036ac37097d1a3e2e65185c3a9df4910945768156792e1d729e4a0"
+				},
+				"icon.png": {
+					"size": 35335,
+					"sha256": "9e51ed5006deb9c059dc2994148173c0522ff37170c1fb1cf3f74ca1168384ec"
+				},
+				"icon-licence.txt": {
+					"size": 15783,
+					"sha256": "96fd153412b071dcf5260e6783fcdaaaf4479691fbbf31049e12e9d0db23e857"
 				}
 			}
 		},
@@ -134,18 +458,85 @@
 					"sha256": "837448a8b74de65fdeecd330cae06c102a5caf21868bc8761f0d1ef0fe47ba4a"
 				}
 			}
+		},
+		"ut99": {
+			"name": "Unreal Tournament",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 2052,
+					"sha256": "4325035b8c7c5906cecb9423c1dfc3dfc405ce953e1f4a4ea92d4c78b266cb4e"
+				},
+				"icon.png": {
+					"size": 104288,
+					"sha256": "3969a43c6886399996ba4d0c328db46aa81c9e5bdc21de5a8fab8ba50072d209"
+				},
+				"icon-licence.txt": {
+					"size": 606,
+					"sha256": "26b078a24ea416d9d7bf0dad2eee48860b665735c7c274278ac6dadb464424b0"
+				}
+			}
+		},
+		"warsow": {
+			"name": "Warsow",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1778,
+					"sha256": "de47b19fc1bde2c31dd90e8b9745f9c5cd3df9c9947fa58bb3cb00fcac41d879"
+				},
+				"icon.png": {
+					"size": 12430,
+					"sha256": "37a7079d09167e584d54c8eade1a2faea280d7f84360ff50884ef7ec7d5e8064"
+				},
+				"icon-licence.txt": {
+					"size": 15813,
+					"sha256": "36bb7404bc5d9a65c986c069855b4c6cf9a8d0e30401e69f838aad5d926c0b53"
+				}
+			}
+		},
+		"xonotic": {
+			"name": "Xonotic",
+			"format": 1,
+			"protocol": "quake3",
+			"files": {
+				"game.json": {
+					"size": 1479,
+					"sha256": "fa85e20d30cf61d4851e7fdc92f4b4872f8b149f2dc2d2e0f1ddf8e32e314013"
+				},
+				"icon.png": {
+					"size": 72123,
+					"sha256": "715c71e998850281ebea5e9fc8478885db2833345503109ecb798f2e739ea5ac"
+				},
+				"icon-licence.txt": {
+					"size": 35784,
+					"sha256": "0924aaee2cd2956d6036e5e91cd9bd5f6940d52f4d2a1ba485b5ac6cbe1bafba"
+				}
+			}
 		}
 	},
 	"protocols": {
+		"gamespy1": {
+			"api": 1,
+			"size": 11461,
+			"sha256": "4f115940b2ddc05f5f047528071753751fa72e5837ddc797b19d52aeda5ffc6e"
+		},
 		"quake2": {
 			"api": 1,
-			"size": 5450,
-			"sha256": "3eda6c07839ae3576c43bca6c2c12963a2c04ce6d269fc3709a8f0b1484c7cbc"
+			"size": 5421,
+			"sha256": "e595ac6eb4e496aaf68d42286ee4f61fb59dfaade6888a2067880ed3a8e5cd40"
 		},
 		"quake3": {
 			"api": 1,
-			"size": 6107,
-			"sha256": "09fb3856b6b422de596aa8999dee5157d2820bd1dd61778e0a44b415d1c7bdaa"
+			"size": 10223,
+			"sha256": "b9e2afd69e07c60505a2c8f39bc326c4e9ff409b2093fffea0c07e417629b12c"
+		},
+		"quakeworld": {
+			"api": 1,
+			"size": 5992,
+			"sha256": "b62d5db906ee87bf20b2d93cfce6a07e27a1957f32d9de1c1025068ab0ae06fe"
 		},
 		"unreal2": {
 			"api": 1,
