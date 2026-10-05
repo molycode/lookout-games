@@ -1,0 +1,38 @@
+{
+	"format": 1,
+	"name": "Medal of Honor: Allied Assault",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries 97 ports above the one players join.",
+	"queryPortOffset": 97,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "mohaa" },
+	"masters": [
+		{ "host": "master.333networks.com", "port": 28900 },
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"mods": [ "gametype" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "Free-For-All", "label": "Free for All" },
+		{ "key": "gametype", "value": "Team-Match", "label": "Team Match" },
+		{ "key": "gametype", "value": "Round-Based-Match", "label": "Round-Based Match" },
+		{ "key": "gametype", "value": "Objective-Match", "label": "Objective" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
