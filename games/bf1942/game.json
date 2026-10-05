@@ -1,0 +1,40 @@
+{
+	"format": 1,
+	"name": "Battlefield 1942",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries on 23000 for players' 14567.",
+	"queryPortOffset": 8433,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "bfield1942" },
+	"masters": [
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"//mods": "bf1942, or the mod's own name, such as xpack1 or dc_final.",
+		"mods": [ "gameId" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "conquest", "label": "Conquest" },
+		{ "key": "gametype", "value": "ctf", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "coop", "label": "Co-op" }
+	],
+	"join": {
+		"//arguments": "+restart 1 skips the intro.",
+		"arguments": [ "+restart", "1", "+joinServer", "{address}" ],
+		"passwordArguments": [ "+restart", "1", "+joinServer", "{address}", "+password", "{password}" ],
+		"password": {
+			"//maxLength": "A server's password holds at most 32 characters.",
+			"maxLength": 32,
+			"//refusedCharacters": "The game reads its command line as + commands split at spaces.",
+			"refusedCharacters": " \"+"
+		}
+	}
+}

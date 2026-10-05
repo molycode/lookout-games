@@ -1,0 +1,43 @@
+{
+	"format": 1,
+	"name": "Soldier of Fortune II: Double Helix",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "printable",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"//protocolOptions": "Version 1.03 servers list under protocol 2004; 1.00 servers, which 1.03 cannot join, under 2002.",
+	"protocolOptions": { "masterQuery": "2004 empty full" },
+	"//masters": "Raven's master closed; the 1fx community runs this one.",
+	"masters": [
+		{ "host": "master.1fxmod.org", "port": 20110 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "dm", "label": "Deathmatch" },
+		{ "key": "g_gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "ctf", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "inf", "label": "Infiltration" },
+		{ "key": "g_gametype", "value": "elim", "label": "Elimination" },
+		{ "key": "g_gametype", "value": "dem", "label": "Demolition" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"format": 1,
+	"name": "Warsow",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ff8000", "#808080", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"
+			]
+		}
+	},
+	"protocolOptions": { "masterQuery": "Warsow 22 empty full" },
+	"masters": [
+		{ "host": "dpmaster.deathmask.net", "port": 27950 },
+		{ "host": "dpmaster.tchr.no", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "fs_game" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "dm", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "duel", "label": "Duel" },
+		{ "key": "gametype", "value": "ffa", "label": "Free for All" },
+		{ "key": "gametype", "value": "ca", "label": "Clan Arena" },
+		{ "key": "gametype", "value": "ctf", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "ctftactics", "label": "CTF: Tactics" },
+		{ "key": "gametype", "value": "bomb", "label": "Bomb and Defuse" },
+		{ "key": "gametype", "value": "da", "label": "Duel Arena" },
+		{ "key": "gametype", "value": "headhunt", "label": "Headhunt" },
+		{ "key": "gametype", "value": "race", "label": "Race" },
+		{ "key": "gametype", "value": "tutorial", "label": "Tutorial" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

@@ -1,0 +1,52 @@
+{
+	"format": 1,
+	"name": "Unreal",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
+	"queryPortOffset": 1,
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"//colourCodes": "Unreal 227 colours names with ESC and three bytes of red, green and blue.",
+		"colourCodes": {
+			"escape": "\u001b",
+			"codes": "rgb"
+		}
+	},
+	"protocolOptions": { "masterGame": "unreal" },
+	"//masters": "Epic's masters closed; the community runs these, and each lists servers the other does not.",
+	"masters": [
+		{ "host": "master.333networks.com", "port": 28900 },
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"mods": [ "gametype" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "DeathMatch", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "Team Game", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "Coop Game", "label": "Co-op" }
+	],
+	"launch": {
+		"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
+		"desktopFiles": [ "OldUnreal-UnrealGold.desktop" ],
+		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+		"installDir": ".local/share/OldUnreal/UnrealGold",
+		"program": "System64/unreal-bin-amd64",
+		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+	},
+	"join": {
+		"//arguments": "The address is the game's URL; each option follows it after a '?'.",
+		"arguments": [ "{address}" ],
+		"passwordArguments": [ "{address}?password={password}" ],
+		"password": {
+			"maxLength": 1024,
+			"//refusedCharacters": "'?' starts the next option, '#' a portal, and a space ends the URL.",
+			"refusedCharacters": " ?#"
+		}
+	}
+}

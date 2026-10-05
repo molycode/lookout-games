@@ -1,0 +1,11 @@
+Unreal Tournament icon (icon.png)
+
+The Mac application's icon from OldUnreal's Unreal Tournament patch 469e, whose bundle names Epic Games as its
+copyright holder; the game's own executable carries the same Unreal mark at 32 x 32:
+https://github.com/OldUnreal/UnrealTournamentPatches/releases/tag/v469e
+(OldUnreal-UTPatch469e-macOS.dmg, UnrealTournament.app/Contents/Resources/Unreal2.icns).
+Converted from ICNS to PNG at its only size, 512 x 512, and scaled to 256 x 256.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.

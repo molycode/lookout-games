@@ -1,0 +1,56 @@
+{
+	"format": 1,
+	"name": "Urban Terror",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#e04f21", "#4a4d30", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"
+			]
+		}
+	},
+	"protocolOptions": { "masterQuery": "68 empty full" },
+	"masters": [
+		{ "host": "master.urbanterror.info", "port": 27900 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass"
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "0", "label": "Free for All" },
+		{ "key": "g_gametype", "value": "1", "label": "Last Man Standing" },
+		{ "key": "g_gametype", "value": "2", "label": "Single Player" },
+		{ "key": "g_gametype", "value": "3", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "4", "label": "Team Survivor" },
+		{ "key": "g_gametype", "value": "5", "label": "Follow the Leader" },
+		{ "key": "g_gametype", "value": "6", "label": "Capture and Hold" },
+		{ "key": "g_gametype", "value": "7", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "8", "label": "Bomb" },
+		{ "key": "g_gametype", "value": "9", "label": "Jump" },
+		{ "key": "g_gametype", "value": "10", "label": "Freeze Tag" },
+		{ "key": "g_gametype", "value": "11", "label": "Gun Game" }
+	],
+	"launch": {
+		"//desktopFiles": "From Flathub and the AUR; each passes its arguments to the game.",
+		"desktopFiles": [ "info.urbanterror.UrbanTerror.desktop", "urbanterror.desktop" ],
+		"installDir": "UrbanTerror43",
+		"program": "Quake3-UrT.x86_64",
+		"requiredFiles": [ "Quake3-UrT.x86_64", "q3ut4/readme43.txt" ]
+	},
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

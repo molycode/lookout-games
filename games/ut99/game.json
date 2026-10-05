@@ -1,0 +1,51 @@
+{
+	"format": 1,
+	"name": "Unreal Tournament",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
+	"queryPortOffset": 1,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "ut" },
+	"//masters": "Epic's masters closed; the community runs these, and each lists servers the other does not.",
+	"masters": [
+		{ "host": "master.333networks.com", "port": 28900 },
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"//mods": "The game type's class, so a mod's own game type, such as BunnyTrackGame or MonsterHunt, can be filtered for.",
+		"mods": [ "gametype" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "DeathMatchPlus", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "TeamGamePlus", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "CTFGame", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "Domination", "label": "Domination" },
+		{ "key": "gametype", "value": "Assault", "label": "Assault" },
+		{ "key": "gametype", "value": "LastManStanding", "label": "Last Man Standing" }
+	],
+	"launch": {
+		"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
+		"desktopFiles": [ "OldUnreal-UnrealTournament.desktop" ],
+		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+		"installDir": ".local/share/OldUnreal/UnrealTournament",
+		"program": "System/ut-bin-amd64",
+		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+	},
+	"join": {
+		"//arguments": "The address is the game's URL; each option follows it after a '?'.",
+		"arguments": [ "{address}" ],
+		"passwordArguments": [ "{address}?password={password}" ],
+		"password": {
+			"maxLength": 1024,
+			"//refusedCharacters": "'?' starts the next option, '#' a portal, and a space ends the URL.",
+			"refusedCharacters": " ?#"
+		}
+	}
+}

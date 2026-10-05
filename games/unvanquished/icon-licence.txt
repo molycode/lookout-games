@@ -1,0 +1,14 @@
+Unvanquished icon (icon.png)
+
+Unvanquished's own desktop icon, added by Thomas Debesse in 2019 ("update debian scripts"):
+https://github.com/Unvanquished/Unvanquished/blob/master/dist/icons/256x256/unvanquished.png
+At 256 x 256, as published.
+
+Licence: the Creative Commons Attribution-ShareAlike 2.5 licence, under which
+https://github.com/Unvanquished/Unvanquished/blob/master/COPYING.txt puts Unvanquished's media.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.
+
+
+Licence text: https://creativecommons.org/licenses/by-sa/2.5/
+Attribution: the Unvanquished developers, https://github.com/Unvanquished/Unvanquished; unchanged.

@@ -1,0 +1,46 @@
+{
+	"format": 1,
+	"name": "Call of Duty 2",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"//protocolOptions": "Version 1.3 servers list under protocol 118 and CoD2x's under 120; the version column tells them apart.",
+	"protocolOptions": { "masterQuery": "118,120 full empty" },
+	"masters": [
+		{ "host": "cod2master.activision.com", "port": 20710 },
+		{ "host": "master.cod2x.me", "port": 20710 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "pswrd",
+		"mods": [ "fs_game" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "dm", "label": "Deathmatch" },
+		{ "key": "g_gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "sd", "label": "Search and Destroy" },
+		{ "key": "g_gametype", "value": "ctf", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "hq", "label": "Headquarters" }
+	],
+	"//foreignServers": "United Offensive servers show up on Call of Duty 2's master.",
+	"foreignServers": [
+		{ "key": "gamename", "value": "CoD:United Offensive" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

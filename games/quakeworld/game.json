@@ -1,0 +1,39 @@
+{
+	"format": 1,
+	"name": "QuakeWorld",
+	"protocol": "quakeworld",
+	"//text": "Quake engines mark coloured text with the high bit, which only their own font can show.",
+	"text": {
+		"encoding": "ascii7"
+	},
+	"masters": [
+		{ "host": "master.quakeservers.net", "port": 27000 },
+		{ "host": "qwmaster.fodquake.net", "port": 27000 },
+		{ "host": "master.quakeworld.nu", "port": 27000 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "map",
+		"maxPlayers": "maxclients",
+		"//password": "needpass is a bitmask: 1 a player password, 2 a spectator password.",
+		"password": "needpass",
+		"mods": [ "*gamedir" ]
+	},
+	"//modes": "KTX, the mod most servers run, names its mode.",
+	"modes": [
+		{ "key": "mode", "value": "ffa", "label": "Free for All" },
+		{ "key": "mode", "value": "1on1", "label": "1 on 1" },
+		{ "key": "mode", "value": "2on2", "label": "2 on 2" },
+		{ "key": "mode", "value": "4on4", "label": "4 on 4" },
+		{ "key": "mode", "value": "ctf", "label": "Capture the Flag" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

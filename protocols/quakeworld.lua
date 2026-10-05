@@ -1,19 +1,22 @@
--- The Quake II engine family, Kingpin's among them: query to a master, status to each server.
+-- QuakeWorld: c to a master, status to each server, as ezQuake asks for them.
 
 local Prefix = "\xFF\xFF\xFF\xFF"
-local MasterQuery = "query"
-local MasterReplyHeader = Prefix .. "servers"
-local StatusReplyHeader = Prefix .. "print\n"
+local MasterQuery = "c\n"
+local MasterReplyHeader = Prefix .. "d\n"
+-- Server info, players, spectators and teams, the bits MVDSV's SVC_Status reads; older servers send everyone.
+local StatusRequest = Prefix .. "status 23\n"
+local StatusReplyHeader = Prefix .. "n"
+local SpectatorPrefix = "\\s\\"
 local AddressSize = 6
+local NumLeadingNumbers = 4
 local MasterQuietMs = 1500
 local Backslash = 92
-local Newline = 10
 local Space = 32
 local Minus = 45
 local Zero = 48
 local Nine = 57
-local MaxScore = 2147483647
-local MaxPing = 4294967295
+local Nul = 0
+local MaxNumber = 2147483647
 
 local function startsWith(text, prefix)
 	return string.sub(text, 1, #prefix) == prefix
@@ -31,12 +34,12 @@ local function parseInfo(info, rules)
 	local start = 2
 
 	while isValid and start <= #info do
-		local keyEnd = string.find(info, "\\", start)
+		local keyEnd = string.find(info, "\\", start, true)
 
 		isValid = keyEnd ~= nil
 
 		if isValid then
-			local valueEnd = string.find(info, "\\", keyEnd + 1)
+			local valueEnd = string.find(info, "\\", keyEnd + 1, true)
 			local valueLast = (valueEnd ~= nil) and (valueEnd - 1) or #info
 
 			rules[#rules + 1] = { key = string.sub(info, start, keyEnd - 1), value = string.sub(info, keyEnd + 1, valueLast) }
@@ -47,17 +50,17 @@ local function parseInfo(info, rules)
 	return isValid
 end
 
--- As std::from_chars reads it: spaces skipped, a minus only where allowed, at least one digit, never out of range.
--- Returns the number and the position after it, or nil.
-local function parseNumber(line, position, last, isSigned, max)
+-- Spaces skipped, a minus allowed, at least one digit, never out of range; the number and the position after it,
+-- or nil.
+local function parseNumber(line, position, last)
 	local index = position
 
 	while index <= last and string.byte(line, index) == Space do
 		index = index + 1
 	end
 
-	local isNegative = isSigned and index <= last and string.byte(line, index) == Minus
-	local limit = isNegative and (max + 1) or max
+	local isNegative = index <= last and string.byte(line, index) == Minus
+	local limit = isNegative and (MaxNumber + 1) or MaxNumber
 	local value = 0
 	local digitsStart = 0
 
@@ -87,24 +90,40 @@ local function parseNumber(line, position, last, isSigned, max)
 	return isNegative and -value or value, index
 end
 
--- <score> <ping> "<name>"; some mods put more numbers before the name, so the name is what the quotes enclose. Alien
--- Arena puts more after it, and no name holds a quote: Info_SetValueForKey refuses one.
-local function parsePlayerLine(line)
-	local nameStart = string.find(line, "\"", 1)
-	local nameEnd = (nameStart ~= nil) and string.find(line, "\"", nameStart + 1) or nil
-	local last = (nameStart ~= nil) and (nameStart - 1) or #line
-	local score, afterScore = parseNumber(line, 1, last, true, MaxScore)
-	local ping = (score ~= nil) and parseNumber(line, afterScore, last, false, MaxPing) or nil
+-- The first count numbers of a line up to last, or nil when one is missing.
+local function parseLeadingNumbers(line, last, count)
+	local numbers = {}
+	local position = 1
 
-	if nameStart == nil or nameEnd == nil or ping == nil then
+	while position ~= nil and #numbers < count do
+		local value, after = parseNumber(line, position, last)
+
+		numbers[#numbers + 1] = value
+		position = (value ~= nil) and after or nil
+	end
+
+	return (#numbers == count) and numbers or nil
+end
+
+-- <userid> <frags> <time> <ping> "<name>" "<skin>" <top> <bottom> ["<team>"]; no name holds a quote. A spectator's
+-- ping is negative and MVDSV marks its name with \s\; nil when the line is not a player's.
+local function parsePlayerLine(line)
+	local nameStart = string.find(line, "\"", 1, true)
+	local nameEnd = (nameStart ~= nil) and string.find(line, "\"", nameStart + 1, true) or nil
+	local numbers = parseLeadingNumbers(line, (nameStart ~= nil) and (nameStart - 1) or #line, NumLeadingNumbers)
+
+	if nameEnd == nil or numbers == nil then
 		return nil
 	end
 
-	return { name = string.sub(line, nameStart + 1, nameEnd - 1), score = score, ping = ping }
+	local name = string.sub(line, nameStart + 1, nameEnd - 1)
+
+	return { name = name, score = numbers[2], ping = numbers[4], isSpectator = numbers[4] < 0 or startsWith(name, SpectatorPrefix) }
 end
 
+-- Spectators are left out: maxclients counts only players.
 local function parseStatusBody(body)
-	local infoEnd = string.find(body, "\n", 1)
+	local infoEnd = string.find(body, "\n", 1, true)
 	local reply = { rules = {}, players = {}, malformedPlayerLines = 0 }
 
 	if not parseInfo(string.sub(body, 1, (infoEnd ~= nil) and (infoEnd - 1) or #body), reply.rules) then
@@ -114,15 +133,15 @@ local function parseStatusBody(body)
 	local position = (infoEnd ~= nil) and (infoEnd + 1) or (#body + 1)
 
 	while position <= #body do
-		local lineEnd = string.find(body, "\n", position) or (#body + 1)
+		local lineEnd = string.find(body, "\n", position, true) or (#body + 1)
 
 		if lineEnd > position then
 			local player = parsePlayerLine(string.sub(body, position, lineEnd - 1))
 
-			if player ~= nil then
-				reply.players[#reply.players + 1] = player
-			else
+			if player == nil then
 				reply.malformedPlayerLines = reply.malformedPlayerLines + 1
+			elseif not player.isSpectator then
+				reply.players[#reply.players + 1] = { name = player.name, score = player.score, ping = player.ping }
 			end
 		end
 
@@ -132,16 +151,14 @@ local function parseStatusBody(body)
 	return reply
 end
 
--- Kingpin's master separates the header from the list with a newline, the Quake 2 masters with a space.
 local function parseMasterDatagram(datagram)
 	local servers = {}
-	local separator = string.byte(datagram, #MasterReplyHeader + 1)
 
-	if not startsWith(datagram, MasterReplyHeader) or (separator ~= Newline and separator ~= Space) then
+	if not startsWith(datagram, MasterReplyHeader) then
 		return servers, "wrongHeader"
 	end
 
-	local position = #MasterReplyHeader + 2
+	local position = #MasterReplyHeader + 1
 
 	while #datagram - position + 1 >= AddressSize do
 		servers[#servers + 1] = readAddress(datagram, position)
@@ -155,12 +172,15 @@ local function parseMasterDatagram(datagram)
 	return servers
 end
 
+-- Some servers end the reply with a NUL.
 local function parseStatusDatagram(datagram)
+	local last = (string.byte(datagram, #datagram) == Nul) and (#datagram - 1) or #datagram
+
 	if not startsWith(datagram, StatusReplyHeader) then
 		return nil, "wrongHeader"
 	end
 
-	return parseStatusBody(string.sub(datagram, #StatusReplyHeader + 1))
+	return parseStatusBody(string.sub(datagram, #StatusReplyHeader + 1, last))
 end
 
 return {
@@ -183,7 +203,7 @@ return {
 
 	server = {
 		start = function(options, state)
-			return { send = { Prefix .. "status\n" } }
+			return { send = { StatusRequest } }
 		end,
 
 		receive = function(state, datagram)

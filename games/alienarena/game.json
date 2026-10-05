@@ -1,0 +1,40 @@
+{
+	"format": 1,
+	"name": "Alien Arena",
+	"protocol": "quake2",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "printable",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"masters": [
+		{ "host": "master.alienarena.org", "port": 27900 },
+		{ "host": "master2.alienarena.org", "port": 27900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"maxPlayers": "maxclients",
+		"//password": "needpass is a bitmask: 1 a player password, 2 a spectator password.",
+		"password": "needpass",
+		"//mods": "mods lists a server's changed gameplay settings, such as %ctf%insta_rockets; game is always arena.",
+		"mods": [ "mods", "game" ]
+	},
+	"//modes": "Servers send no game type; g_teamgame marks a team game.",
+	"modes": [
+		{ "key": "g_teamgame", "value": "1", "label": "Team" },
+		{ "key": "deathmatch", "value": "1", "label": "Deathmatch" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

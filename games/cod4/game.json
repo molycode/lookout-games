@@ -1,0 +1,42 @@
+{
+	"format": 1,
+	"name": "Call of Duty 4: Modern Warfare",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "6 full empty" },
+	"masters": [
+		{ "host": "cod4master.activision.com", "port": 20810 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"//password": "CoD4X sends it only when a password is set.",
+		"password": "pswrd",
+		"mods": [ "fs_game" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "dm", "label": "Free for All" },
+		{ "key": "g_gametype", "value": "war", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "sd", "label": "Search and Destroy" },
+		{ "key": "g_gametype", "value": "sab", "label": "Sabotage" },
+		{ "key": "g_gametype", "value": "dom", "label": "Domination" },
+		{ "key": "g_gametype", "value": "koth", "label": "Headquarters" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}

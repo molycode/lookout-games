@@ -1,0 +1,47 @@
+{
+	"format": 1,
+	"name": "Xonotic",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0d26ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ffffff", "#808080", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"
+			],
+			"hexCodes": [ "xRGB" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "Xonotic 3 empty full" },
+	"masters": [
+		{ "host": "dpmaster.deathmask.net", "port": 27950 },
+		{ "host": "dpmaster.tchr.no", "port": 27950 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"//password": "DarkPlaces has no join password, so no server sends this rule.",
+		"password": "g_needpass",
+		"mods": [ "modname" ]
+	},
+	"launch": {
+		"//desktopFiles": "From Flathub and Arch; each passes its arguments to the game.",
+		"desktopFiles": [ "org.xonotic.Xonotic.desktop", "xonotic.desktop" ],
+		"//installDir": "Where the release zip unpacks, and its launcher, which passes its arguments on.",
+		"installDir": "Xonotic",
+		"program": "xonotic-linux-sdl.sh",
+		"requiredFiles": [ "xonotic-linux64-sdl", "key_0.d0pk" ]
+	},
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
