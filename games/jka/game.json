@@ -1,0 +1,51 @@
+{
+	"format": 1,
+	"name": "Star Wars Jedi Knight: Jedi Academy",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"//colourCodes": "OpenJK's table: ten colours, the rest black.",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [
+				"#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff",
+				"#ff8000", "#808080", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000"
+			]
+		}
+	},
+	"protocolOptions": { "masterQuery": "26 empty full" },
+	"//masters": "Raven's master closed; the community runs these.",
+	"masters": [
+		{ "host": "master.jkhub.org", "port": 29060 },
+		{ "host": "master.jk2mv.org", "port": 29060 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "g_needpass",
+		"mods": [ "gamename" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "0", "label": "Free for All" },
+		{ "key": "g_gametype", "value": "1", "label": "Holocron FFA" },
+		{ "key": "g_gametype", "value": "2", "label": "Jedi Master" },
+		{ "key": "g_gametype", "value": "3", "label": "Duel" },
+		{ "key": "g_gametype", "value": "4", "label": "Power Duel" },
+		{ "key": "g_gametype", "value": "5", "label": "Cooperative" },
+		{ "key": "g_gametype", "value": "6", "label": "Team FFA" },
+		{ "key": "g_gametype", "value": "7", "label": "Siege" },
+		{ "key": "g_gametype", "value": "8", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "9", "label": "Capture the Ysalamiri" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
