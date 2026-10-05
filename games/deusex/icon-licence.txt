@@ -1,0 +1,10 @@
+Deus Ex icon (icon.png)
+
+The Deus Ex mark as Deus Exe, Kentie's (https://kentie.net) replacement executable for the game, carries it since
+its version 7.0 (2015):
+https://github.com/mkentie/DeusExe/blob/master/DeusExe/deusex.ico
+Converted from ICO to PNG at its 128 x 128 size.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.

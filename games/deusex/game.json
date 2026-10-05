@@ -1,0 +1,36 @@
+{
+	"format": 1,
+	"name": "Deus Ex",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
+	"queryPortOffset": 1,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "deusex" },
+	"masters": [
+		{ "host": "master.333networks.com", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"mods": [ "gametype" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "MTLDeathMatch", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "MTLTeam", "label": "Team Deathmatch" }
+	],
+	"join": {
+		"//arguments": "The address is the game's URL; each option follows it after a '?'.",
+		"arguments": [ "{address}" ],
+		"passwordArguments": [ "{address}?password={password}" ],
+		"password": {
+			"maxLength": 1024,
+			"//refusedCharacters": "'?' starts the next option, '#' a portal, and a space ends the URL.",
+			"refusedCharacters": " ?#"
+		}
+	}
+}
