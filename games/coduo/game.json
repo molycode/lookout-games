@@ -1,0 +1,44 @@
+{
+	"format": 1,
+	"name": "Call of Duty: United Offensive",
+	"protocol": "quake3",
+	"text": {
+		"encoding": "utf8OrWindows1252",
+		"colourCodes": {
+			"escape": "^",
+			"codes": "alphanumeric",
+			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
+		}
+	},
+	"protocolOptions": { "masterQuery": "22 full empty" },
+	"masters": [
+		{ "host": "coduomaster.activision.com", "port": 20610 }
+	],
+	"keys": {
+		"hostname": "sv_hostname",
+		"map": "mapname",
+		"maxPlayers": "sv_maxclients",
+		"password": "pswrd",
+		"mods": [ "fs_game" ]
+	},
+	"modes": [
+		{ "key": "g_gametype", "value": "dm", "label": "Deathmatch" },
+		{ "key": "g_gametype", "value": "tdm", "label": "Team Deathmatch" },
+		{ "key": "g_gametype", "value": "sd", "label": "Search and Destroy" },
+		{ "key": "g_gametype", "value": "re", "label": "Retrieval" },
+		{ "key": "g_gametype", "value": "bel", "label": "Behind Enemy Lines" },
+		{ "key": "g_gametype", "value": "hq", "label": "Headquarters" },
+		{ "key": "g_gametype", "value": "ctf", "label": "Capture the Flag" },
+		{ "key": "g_gametype", "value": "dom", "label": "Domination" },
+		{ "key": "g_gametype", "value": "bas", "label": "Base Assault" }
+	],
+	"join": {
+		"arguments": [ "+connect", "{address}" ],
+		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \"$;+\\",
+			"refusedSequences": [ "//", "/*" ]
+		}
+	}
+}
