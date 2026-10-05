@@ -23,8 +23,8 @@ there is one. The folder's name is the game's key, made of small letters, digits
 Lookout keeps the game's settings under, so it never changes once published.
 
 The easiest way to write `game.json` is in Lookout: click the gamepad button above the game list, or the pencil on a
-game to start from its description. The editor checks the text as you type and lists every field beside it. A new game
-you save there is in `~/.local/share/lookout/games/<key>/game.json`, ready to copy here.
+game to start from its description. The editor offers every field with what it means and checks them as you type. A new
+game you save there is in `~/.local/share/lookout/games/<key>/game.json`, ready to copy here.
 
 A game on a protocol that is not here yet adds `protocols/<name>.lua` as well. Captured replies from a real master and
 server, as Lookout's protocol tests use them, make it much easier to review.
