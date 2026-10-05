@@ -3,17 +3,31 @@
 local Prefix = "\xFF\xFF\xFF\xFF"
 local MasterReplyHeader = Prefix .. "getserversResponse"
 local StatusReplyHeader = Prefix .. "statusResponse\n"
-local EndOfList = "\\EOT"
+local EchoHeader = Prefix .. "echo \""
+local EchoChallenge = "echoResponse getstatus "
+-- Call of Duty's masters end their last datagram with "\EOF".
+local EndMarkers = { ["\\EOT"] = true, ["\\EOF"] = true }
+local EndMarkerSize = 4
 local MasterQuietMs = 1500
 local Backslash = 92
 local Space = 32
+local Newline = 10
+local Nul = 0
+local Quote = 34
 local Minus = 45
 local Zero = 48
 local Nine = 57
+local UpperA = 65
+local UpperF = 70
+local LowerA = 97
+local LowerF = 102
 local MaxScore = 2147483647
 local MaxPing = 4294967295
 -- Each entry is a backslash and then the address, so an address byte that happens to be a backslash is harmless.
 local EntrySize = 7
+-- Elite Force's masters write the address and port as twelve hex digits.
+local HexEntrySize = 13
+local HexEntries = "hex"
 
 local function startsWith(text, prefix)
 	return string.sub(text, 1, #prefix) == prefix
@@ -25,10 +39,79 @@ local function readAddress(datagram, position)
 	return { ip = ip, port = port }
 end
 
--- "\EOT" with nothing but NUL padding after it; a 69.79.84.x entry starts with the same four bytes.
-local function isEndOfList(datagram, position, remaining)
-	return remaining <= EntrySize and string.sub(datagram, position, position + #EndOfList - 1) == EndOfList
-		and string.sub(datagram, position + #EndOfList) == string.rep("\0", remaining - #EndOfList)
+local function isHexDigit(byte)
+	return (byte >= Zero and byte <= Nine) or (byte >= UpperA and byte <= UpperF) or (byte >= LowerA and byte <= LowerF)
+end
+
+-- nil unless all twelve are hex digits.
+local function readHexAddress(datagram, position)
+	local isHex = true
+
+	for index = position, position + HexEntrySize - 2 do
+		isHex = isHex and isHexDigit(string.byte(datagram, index))
+	end
+
+	return isHex and { ip = tonumber(string.sub(datagram, position, position + 7), 16), port = tonumber(string.sub(datagram, position + 8, position + 11), 16) } or nil
+end
+
+-- An end marker with nothing but NUL padding after it; a 69.79.84.x entry starts with the same four bytes. The
+-- Tremulous and Unvanquished masters end each datagram with a lone backslash instead.
+local function isEndOfList(datagram, position, remaining, entrySize)
+	local isLoneBackslash = remaining == 1 and string.byte(datagram, position) == Backslash
+
+	return isLoneBackslash or (remaining <= entrySize and EndMarkers[string.sub(datagram, position, position + EndMarkerSize - 1)] == true
+		and string.sub(datagram, position + EndMarkerSize) == string.rep("\0", remaining - EndMarkerSize))
+end
+
+-- Call of Duty's masters put a newline and a NUL before the first entry, JK2MV's a newline, Elite Force's a space.
+local function skipLeadIn(datagram, position)
+	local byte = string.byte(datagram, position)
+
+	while byte == Newline or byte == Nul or byte == Space do
+		position = position + 1
+		byte = string.byte(datagram, position)
+	end
+
+	return position
+end
+
+-- "15,16 empty full" asks for each protocol version in turn, as JK2MV and CoD2x do.
+local function makeMasterQueries(masterQuery)
+	local comma = string.find(masterQuery, ",", 1, true)
+	local queries = {}
+
+	if comma == nil then
+		queries[1] = Prefix .. "getservers " .. masterQuery
+	else
+		local wordStart = comma
+		local wordEnd = (string.find(masterQuery, " ", comma, true) or (#masterQuery + 1)) - 1
+
+		while wordStart > 1 and string.byte(masterQuery, wordStart - 1) ~= Space do
+			wordStart = wordStart - 1
+		end
+
+		local partStart = wordStart
+
+		while partStart <= wordEnd + 1 do
+			local partEnd = string.find(masterQuery, ",", partStart, true)
+
+			partEnd = (partEnd ~= nil and partEnd <= wordEnd) and partEnd or (wordEnd + 1)
+			assert(partEnd > partStart, "masterQuery lists an empty protocol version")
+			queries[#queries + 1] = Prefix .. "getservers " .. string.sub(masterQuery, 1, wordStart - 1)
+				.. string.sub(masterQuery, partStart, partEnd - 1) .. string.sub(masterQuery, wordEnd + 1)
+			partStart = partEnd + 1
+		end
+	end
+
+	return queries
+end
+
+-- The text an OpenJK server asks to have echoed before it answers getstatus, or nil.
+local function readEchoChallenge(datagram)
+	local text = (startsWith(datagram, EchoHeader) and string.byte(datagram, #datagram) == Quote)
+		and string.sub(datagram, #EchoHeader + 1, #datagram - 1) or ""
+
+	return startsWith(text, EchoChallenge) and text or nil
 end
 
 -- "\key\value" pairs up to the end of info; false when info is not one.
@@ -106,13 +189,14 @@ local function parsePlayerLine(line)
 
 	local last = (nameStart ~= nil) and (nameStart - 1) or #line
 	local score, afterScore = parseNumber(line, 1, last, true, MaxScore)
-	local ping = (score ~= nil) and parseNumber(line, afterScore, last, false, MaxPing) or nil
+	local ping = (score ~= nil) and parseNumber(line, afterScore, last, true, MaxPing) or nil
 
 	if nameStart == nil or nameEnd == nameStart or ping == nil then
 		return nil
 	end
 
-	return { name = string.sub(line, nameStart + 1, nameEnd - 1), score = score, ping = ping }
+	-- Call of Duty's servers give a player still connecting a ping of -1.
+	return { name = string.sub(line, nameStart + 1, nameEnd - 1), score = score, ping = (ping >= 0) and ping or nil }
 end
 
 local function parseStatusBody(body)
@@ -144,27 +228,39 @@ local function parseStatusBody(body)
 	return reply
 end
 
-local function parseMasterDatagram(datagram)
+local function parseMasterDatagram(datagram, isHex)
 	local servers = {}
+	local entrySize = isHex and HexEntrySize or EntrySize
 
 	if not startsWith(datagram, MasterReplyHeader) then
 		return servers, "wrongHeader"
 	end
 
-	local position = #MasterReplyHeader + 1
+	local position = skipLeadIn(datagram, #MasterReplyHeader + 1)
 
 	while position <= #datagram do
 		local remaining = #datagram - position + 1
+		local server = nil
 
-		if isEndOfList(datagram, position, remaining) then
+		if isEndOfList(datagram, position, remaining, entrySize) then
 			position = #datagram + 1
 		elseif string.byte(datagram, position) ~= Backslash then
 			return servers, "malformed"
-		elseif remaining < EntrySize then
+		elseif remaining < entrySize then
 			return servers, "truncated"
 		else
-			servers[#servers + 1] = readAddress(datagram, position + 1)
-			position = position + EntrySize
+			if isHex then
+				server = readHexAddress(datagram, position + 1)
+			else
+				server = readAddress(datagram, position + 1)
+			end
+
+			if server == nil then
+				return servers, "malformed"
+			end
+
+			servers[#servers + 1] = server
+			position = position + entrySize
 		end
 	end
 
@@ -183,19 +279,24 @@ return {
 	api = 1,
 
 	options = {
-		masterQuery = { required = true, description = "The words after getservers: the protocol number, then filters such as \"empty full\"" },
+		masterQuery = { required = true, description = "The words after getservers: the protocol number, then filters such as \"empty full\"; "
+			.. "several numbers joined by commas, such as \"15,16 empty full\", ask for each" },
+		masterEntries = { required = false, description = "\"hex\" when the master writes each address as twelve hex digits, as Elite Force's do" },
 	},
 
 	master = {
 		transport = "udp",
 
 		start = function(options, state)
-			return { send = { Prefix .. "getservers " .. options.masterQuery } }
+			assert(options.masterEntries == nil or options.masterEntries == HexEntries, "masterEntries must be \"hex\" when given")
+			state.isHex = options.masterEntries == HexEntries
+
+			return { send = makeMasterQueries(options.masterQuery) }
 		end,
 
 		-- \EOT never means done: UDP may deliver it before the datagrams sent ahead of it.
 		receive = function(state, datagram)
-			local servers, reason = parseMasterDatagram(datagram)
+			local servers, reason = parseMasterDatagram(datagram, state.isHex)
 
 			return { servers = servers, reason = reason, quiet = MasterQuietMs }
 		end,
@@ -206,7 +307,18 @@ return {
 			return { send = { Prefix .. "getstatus" } }
 		end,
 
+		-- The challenge is answered once; a second one, to a resent getstatus, is ignored.
 		receive = function(state, datagram)
+			local challenge = readEchoChallenge(datagram)
+
+			if challenge ~= nil then
+				local isFirst = not state.hasEchoed
+
+				state.hasEchoed = true
+
+				return isFirst and { send = { Prefix .. challenge } } or nil
+			end
+
 			local reply, reason = parseStatusDatagram(datagram)
 
 			return { reply = reply, reason = reason }
