@@ -184,7 +184,8 @@ local function parseStatusDatagram(datagram)
 end
 
 return {
-	api = 1,
+	api = 2,
+	version = 1,
 
 	master = {
 		transport = "udp",

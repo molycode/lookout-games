@@ -264,7 +264,8 @@ local function readFrame(state, payload, servers)
 end
 
 return {
-	api = 1,
+	api = 2,
+	version = 1,
 
 	master = {
 		transport = "tcp",
