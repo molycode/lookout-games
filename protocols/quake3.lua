@@ -1,8 +1,12 @@
--- The Quake III Arena family: getservers from a master, getstatus from each server.
+-- The Quake III Arena family: getservers from a master, getstatus from each server, and getinfo from a server whose
+-- status leaves out a rule the game takes from it.
 
 local Prefix = "\xFF\xFF\xFF\xFF"
 local MasterReplyHeader = Prefix .. "getserversResponse"
 local StatusReplyHeader = Prefix .. "statusResponse\n"
+local InfoReplyHeader = Prefix .. "infoResponse\n"
+-- The server only echoes the word back as the info's challenge.
+local InfoRequest = Prefix .. "getinfo lookout"
 local EchoHeader = Prefix .. "echo \""
 local EchoChallenge = "echoResponse getstatus "
 -- Call of Duty's masters end their last datagram with "\EOF".
@@ -23,6 +27,7 @@ local LowerA = 97
 local LowerF = 102
 local MaxScore = 2147483647
 local MaxPing = 4294967295
+local MaxCount = 4294967295
 -- Each entry is a backslash and then the address, so an address byte that happens to be a backslash is harmless.
 local EntrySize = 7
 -- Elite Force's masters write the address and port as twelve hex digits.
@@ -199,6 +204,30 @@ local function parsePlayerLine(line)
 	return { name = string.sub(line, nameStart + 1, nameEnd - 1), score = score, ping = (ping >= 0) and ping or nil }
 end
 
+-- The rule's value, whatever case the server spells its name in, or nil.
+local function findRule(rules, key)
+	local wanted = string.lower(key)
+	local value = nil
+
+	for _, rule in ipairs(rules) do
+		value = (value == nil and string.lower(rule.key) == wanted) and rule.value or value
+	end
+
+	return value
+end
+
+-- The slots players can take: the private ones are kept for those who know sv_privatePassword.
+local function setCapacity(reply)
+	local maxClients = findRule(reply.rules, "sv_maxclients")
+	local privateClients = findRule(reply.rules, "sv_privateClients")
+	local numSlots = (maxClients ~= nil) and parseNumber(maxClients, 1, #maxClients, false, MaxCount) or nil
+	local numPrivate = (privateClients ~= nil) and parseNumber(privateClients, 1, #privateClients, false, MaxCount) or nil
+
+	if numSlots ~= nil then
+		reply.maxPlayers = math.max(numSlots - (numPrivate or 0), 0)
+	end
+end
+
 local function parseStatusBody(body)
 	local infoEnd = string.find(body, "\n", 1)
 	local reply = { rules = {}, players = {}, malformedPlayerLines = 0 }
@@ -224,6 +253,8 @@ local function parseStatusBody(body)
 
 		position = lineEnd + 1
 	end
+
+	setCapacity(reply)
 
 	return reply
 end
@@ -275,6 +306,56 @@ local function parseStatusDatagram(datagram)
 	return parseStatusBody(string.sub(datagram, #StatusReplyHeader + 1))
 end
 
+-- The words of text, split at spaces.
+local function splitWords(text)
+	local words = {}
+	local start = 1
+
+	while start <= #text do
+		local stop = string.find(text, " ", start, true) or (#text + 1)
+
+		if stop > start then
+			words[#words + 1] = string.sub(text, start, stop - 1)
+		end
+
+		start = stop + 1
+	end
+
+	return words
+end
+
+-- Those of keys the reply's rules leave out.
+local function findMissingRules(reply, keys)
+	local missing = {}
+
+	for _, key in ipairs(keys) do
+		if findRule(reply.rules, key) == nil then
+			missing[#missing + 1] = key
+		end
+	end
+
+	return missing
+end
+
+-- Each of keys that the info gives, added to the reply's rules; a malformed info adds nothing.
+local function addInfoRules(reply, keys, datagram)
+	local body = string.sub(datagram, #InfoReplyHeader + 1)
+	local lineEnd = string.find(body, "\n", 1, true)
+	local info = {}
+
+	if parseInfo(string.sub(body, 1, (lineEnd ~= nil) and (lineEnd - 1) or #body), info) then
+		for _, key in ipairs(keys) do
+			local value = findRule(info, key)
+
+			if value ~= nil then
+				reply.rules[#reply.rules + 1] = { key = key, value = value }
+			end
+		end
+	end
+
+	return reply
+end
+
 return {
 	api = 1,
 
@@ -282,6 +363,8 @@ return {
 		masterQuery = { required = true, description = "The words after getservers: the protocol number, then filters such as \"empty full\"; "
 			.. "several numbers joined by commas, such as \"15,16 empty full\", ask for each" },
 		masterEntries = { required = false, description = "\"hex\" when the master writes each address as twelve hex digits, as Elite Force's do" },
+		infoRules = { required = false, description = "Rules, separated by spaces, that getstatus leaves out and getinfo gives, such as RTCW's "
+			.. "g_needpass; a server whose status lacks one is asked getinfo as well" },
 	},
 
 	master = {
@@ -304,10 +387,13 @@ return {
 
 	server = {
 		start = function(options, state)
+			state.infoRules = splitWords(options.infoRules or "")
+
 			return { send = { Prefix .. "getstatus" } }
 		end,
 
-		-- The challenge is answered once; a second one, to a resent getstatus, is ignored.
+		-- The challenge is answered once; a second one, to a resent getstatus, is ignored. A status that lacks an info
+		-- rule is kept until the info comes, and a second status, to a resent getstatus, is ignored then.
 		receive = function(state, datagram)
 			local challenge = readEchoChallenge(datagram)
 
@@ -319,9 +405,26 @@ return {
 				return isFirst and { send = { Prefix .. challenge } } or nil
 			end
 
+			if state.reply ~= nil then
+				return startsWith(datagram, InfoReplyHeader) and { reply = addInfoRules(state.reply, state.missingRules, datagram) } or nil
+			end
+
 			local reply, reason = parseStatusDatagram(datagram)
+			local missingRules = (reply ~= nil) and findMissingRules(reply, state.infoRules) or {}
+
+			if #missingRules > 0 then
+				state.reply = reply
+				state.missingRules = missingRules
+
+				return { send = { InfoRequest } }
+			end
 
 			return { reply = reply, reason = reason }
+		end,
+
+		-- Only a kept status gets here with something to give: its info never came, so the reply lacks just those rules.
+		finish = function(state)
+			return (state.reply ~= nil) and { reply = state.reply } or nil
 		end,
 	},
 }
