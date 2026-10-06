@@ -3,8 +3,9 @@
 
 The index names the commit it describes, and Lookout fetches every file at that commit: raw.githubusercontent.com
 caches each URL for minutes, so a file fetched from main could be older than the index that lists it. Run it with the
-games and protocols committed, then commit index.json on its own. With --check it writes nothing, as a pull request is
-checked: a protocol script that differs from index.json must raise its version.
+games and protocols committed, and Lookout's latest release as --lookout-version, then commit index.json on its own;
+Lookout tells its users when the index names a newer one. With --check it writes nothing, as a pull request is checked:
+a protocol script that differs from index.json must raise its version.
 """
 
 import hashlib
@@ -21,6 +22,8 @@ GAME_FILES = ("game.json", "icon.png", "icon-licence.txt")
 # The returned table's first fields, so a nested field of the same name is never taken for them.
 HEADER = re.compile(r"^return \{\n\tapi = (\d+),\n(?:\tversion = (\d+),\n)?", re.MULTILINE)
 VERSION_API = 2
+LOOKOUT_VERSION = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+\Z")
+USAGE = "usage: make-index.py --lookout-version X.Y.Z | --check"
 # Lua's largest integer.
 MAX_VERSION = 2**63 - 1
 
@@ -119,10 +122,15 @@ def check_versions(protocols):
 
 
 def main():
-    if sys.argv[1:] not in ([], ["--check"]):
-        sys.exit("usage: make-index.py [--check]")
+    arguments = sys.argv[1:]
+    is_check = arguments == ["--check"]
+    lookout_version = arguments[1] if len(arguments) == 2 and arguments[0] == "--lookout-version" else None
 
-    is_check = sys.argv[1:] == ["--check"]
+    if not is_check and lookout_version is None:
+        sys.exit(USAGE)
+
+    if lookout_version is not None and not LOOKOUT_VERSION.match(lookout_version):
+        fail(f"--lookout-version {lookout_version}: must be a version such as 1.4.0")
 
     if not is_check and git("status", "--porcelain", "--", "games", "protocols"):
         fail("games/ or protocols/ has uncommitted changes, which the index could not name a commit for")
@@ -139,7 +147,8 @@ def main():
     if is_check:
         print(f"make-index.py: {len(games)} games, {len(protocols)} protocols, ready to index")
     else:
-        index = {"index": INDEX_FORMAT, "commit": git("rev-parse", "HEAD"), "games": games, "protocols": protocols}
+        index = {"index": INDEX_FORMAT, "commit": git("rev-parse", "HEAD"), "lookoutVersion": lookout_version, "games": games,
+            "protocols": protocols}
 
         (ROOT / "index.json").write_text(json.dumps(index, indent="\t", ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"index.json: {len(games)} games, {len(protocols)} protocols at {index['commit'][:12]}")
