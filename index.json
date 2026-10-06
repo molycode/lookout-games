@@ -1,6 +1,7 @@
 {
 	"index": 1,
-	"commit": "ae2c31d26d5881828b4a18a32da1a5ee079a042c",
+	"commit": "2305b6c16af3d28d4f907a1ad25fe4f7a214ec3b",
+	"lookoutVersion": "1.3.0",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
