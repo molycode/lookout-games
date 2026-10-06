@@ -11,7 +11,11 @@
 			"palette": [ "#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#00ffff", "#ff00ff", "#ffffff" ]
 		}
 	},
-	"protocolOptions": { "masterQuery": "60 empty full" },
+	"protocolOptions": {
+		"masterQuery": "60 empty full",
+		"//infoRules": "iortcw sets g_needpass but never puts it in the status; its engine gives it only in getinfo, as RTCW's own browser reads it.",
+		"infoRules": "g_needpass"
+	},
 	"masters": [
 		{ "host": "wolfmaster.idsoftware.com", "port": 27950 }
 	],
