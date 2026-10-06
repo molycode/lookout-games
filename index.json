@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "41dfa6958da6cf921fdf8b0910a58a5bb8521d5e",
+	"commit": "4ee9eaac56d5b463636ac8291b546275cc78cca5",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -310,8 +310,8 @@
 			"protocol": "quake3",
 			"files": {
 				"game.json": {
-					"size": 1801,
-					"sha256": "d38a6878986647807061700c7f72ff470d007c924b17698e3994a14105189f75"
+					"size": 1978,
+					"sha256": "5affb77d79eb4ce517424189bcf09b1ab524f820897ffce3946dc899d0344155"
 				},
 				"icon.png": {
 					"size": 13872,
@@ -530,8 +530,8 @@
 		},
 		"quake3": {
 			"api": 1,
-			"size": 10223,
-			"sha256": "b9e2afd69e07c60505a2c8f39bc326c4e9ff409b2093fffea0c07e417629b12c"
+			"size": 13567,
+			"sha256": "b537a40c8ef8127a63ddcf4d49e6fa46aa184fb911602012f2b0a727e80f37ea"
 		},
 		"quakeworld": {
 			"api": 1,
