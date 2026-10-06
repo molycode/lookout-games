@@ -299,7 +299,8 @@ local function makeReply(state)
 end
 
 return {
-	api = 1,
+	api = 2,
+	version = 1,
 
 	options = {
 		masterGame = { required = true, description = "The game's name on the masters, such as \"ut\" or \"mohaa\"" },

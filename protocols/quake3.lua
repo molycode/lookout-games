@@ -357,7 +357,8 @@ local function addInfoRules(reply, keys, datagram)
 end
 
 return {
-	api = 1,
+	api = 2,
+	version = 1,
 
 	options = {
 		masterQuery = { required = true, description = "The words after getservers: the protocol number, then filters such as \"empty full\"; "
