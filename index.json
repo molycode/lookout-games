@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "4ee9eaac56d5b463636ac8291b546275cc78cca5",
+	"commit": "ae2c31d26d5881828b4a18a32da1a5ee079a042c",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -519,29 +519,34 @@
 	},
 	"protocols": {
 		"gamespy1": {
-			"api": 1,
-			"size": 11461,
-			"sha256": "4f115940b2ddc05f5f047528071753751fa72e5837ddc797b19d52aeda5ffc6e"
+			"api": 2,
+			"version": 1,
+			"size": 11475,
+			"sha256": "002360a8446a90f67d16c63ecf86c368b9f2452fb90697c6e92ecea17ff10601"
 		},
 		"quake2": {
-			"api": 1,
-			"size": 5421,
-			"sha256": "e595ac6eb4e496aaf68d42286ee4f61fb59dfaade6888a2067880ed3a8e5cd40"
+			"api": 2,
+			"version": 1,
+			"size": 5435,
+			"sha256": "1912d16b9ce84e78d951d06f92324956d4fb4454d643db3224098759715d2054"
 		},
 		"quake3": {
-			"api": 1,
-			"size": 13567,
-			"sha256": "b537a40c8ef8127a63ddcf4d49e6fa46aa184fb911602012f2b0a727e80f37ea"
+			"api": 2,
+			"version": 1,
+			"size": 13581,
+			"sha256": "8757c5e8d72d3f380ae9b35c4a387004a0ef9cb34b9aa952cbb6ed079d5cf36e"
 		},
 		"quakeworld": {
-			"api": 1,
-			"size": 5992,
-			"sha256": "b62d5db906ee87bf20b2d93cfce6a07e27a1957f32d9de1c1025068ab0ae06fe"
+			"api": 2,
+			"version": 1,
+			"size": 6006,
+			"sha256": "dae0e4ec526ef7d01e797a5c5d716f70262fed974867df156b14423af17a19e9"
 		},
 		"unreal2": {
-			"api": 1,
-			"size": 10482,
-			"sha256": "deb9119bc0c7b4165e510018f9c7a91cea365ca36e87a47a01857806674ac51f"
+			"api": 2,
+			"version": 1,
+			"size": 10496,
+			"sha256": "3bde43f3ea76ddbbd40056f3c690150b240ed81a620dd78a8f3fa7399f5dc106"
 		}
 	}
 }
