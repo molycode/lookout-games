@@ -3,7 +3,8 @@
 
 The index names the commit it describes, and Lookout fetches every file at that commit: raw.githubusercontent.com
 caches each URL for minutes, so a file fetched from main could be older than the index that lists it. Run it with the
-games and protocols committed, then commit index.json on its own.
+games and protocols committed, then commit index.json on its own. With --check it writes nothing, as a pull request is
+checked: a protocol script that differs from index.json must raise its version.
 """
 
 import hashlib
@@ -17,7 +18,11 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX_FORMAT = 1
 KEY = re.compile(r"[a-z0-9][a-z0-9_-]*\Z")
 GAME_FILES = ("game.json", "icon.png", "icon-licence.txt")
-API = re.compile(r"^\s*api\s*=\s*(\d+)\s*,", re.MULTILINE)
+# The returned table's first fields, so a nested field of the same name is never taken for them.
+HEADER = re.compile(r"^return \{\n\tapi = (\d+),\n(?:\tversion = (\d+),\n)?", re.MULTILINE)
+VERSION_API = 2
+# Lua's largest integer.
+MAX_VERSION = 2**63 - 1
 
 
 def fail(message):
@@ -74,18 +79,52 @@ def read_protocols():
         if path.suffix != ".lua" or not KEY.match(name):
             fail(f"protocols/{path.name}: a protocol is a .lua file named with small letters, digits, '-' and '_'")
 
-        api = API.search(path.read_text(encoding="utf-8"))
+        headers = HEADER.findall(path.read_text(encoding="utf-8"))
 
-        if api is None:
-            fail(f"protocols/{path.name}: declares no api")
+        if len(headers) != 1:
+            fail(f"protocols/{path.name}: needs one 'return {{' with 'api = <number>,' on the line after it")
 
-        protocols[name] = {"api": int(api.group(1)), **describe(path)}
+        api = int(headers[0][0])
+        protocol = {"api": api}
+
+        if api >= VERSION_API:
+            version = int(headers[0][1] or 0)
+
+            if not 1 <= version <= MAX_VERSION:
+                fail(f"protocols/{path.name}: needs 'version = <number>,' from 1 on the line after its api")
+
+            protocol["version"] = version
+
+        protocols[name] = {**protocol, **describe(path)}
 
     return protocols
 
 
+# Against what was last indexed, so each index raises the version of every script it changes.
+def check_versions(protocols):
+    try:
+        indexed = json.loads((ROOT / "index.json").read_text(encoding="utf-8")).get("protocols", {})
+    except FileNotFoundError:
+        indexed = {}
+    except ValueError as error:
+        fail(f"index.json: {error}")
+
+    for name, protocol in protocols.items():
+        old = indexed.get(name, {})
+        old_version = old.get("version", 0)
+        new_version = protocol.get("version", 0)
+
+        if old and old.get("sha256") != protocol["sha256"] and (old_version or new_version) and new_version <= old_version:
+            fail(f"protocols/{name}.lua: changed since index.json, so its version must be above {old_version}")
+
+
 def main():
-    if git("status", "--porcelain", "--", "games", "protocols"):
+    if sys.argv[1:] not in ([], ["--check"]):
+        sys.exit("usage: make-index.py [--check]")
+
+    is_check = sys.argv[1:] == ["--check"]
+
+    if not is_check and git("status", "--porcelain", "--", "games", "protocols"):
         fail("games/ or protocols/ has uncommitted changes, which the index could not name a commit for")
 
     games = read_games()
@@ -95,10 +134,15 @@ def main():
         if game["protocol"] not in protocols:
             fail(f"games/{key}/game.json: its protocol '{game['protocol']}' is not in protocols/")
 
-    index = {"index": INDEX_FORMAT, "commit": git("rev-parse", "HEAD"), "games": games, "protocols": protocols}
+    check_versions(protocols)
 
-    (ROOT / "index.json").write_text(json.dumps(index, indent="\t", ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"index.json: {len(games)} games, {len(protocols)} protocols at {index['commit'][:12]}")
+    if is_check:
+        print(f"make-index.py: {len(games)} games, {len(protocols)} protocols, ready to index")
+    else:
+        index = {"index": INDEX_FORMAT, "commit": git("rev-parse", "HEAD"), "games": games, "protocols": protocols}
+
+        (ROOT / "index.json").write_text(json.dumps(index, indent="\t", ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"index.json: {len(games)} games, {len(protocols)} protocols at {index['commit'][:12]}")
 
 
 main()

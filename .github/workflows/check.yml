@@ -23,6 +23,8 @@ jobs:
             echo "::error file=index.json::index.json is written by the Index workflow after a merge; leave it out of the pull request."
             exit 1
           fi
+      - name: Check what the Index workflow will index
+        run: python3 tools/make-index.py --check
       - name: Get the latest Lookout
         env:
           GH_TOKEN: ${{ github.token }}
