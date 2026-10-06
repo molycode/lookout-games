@@ -22,9 +22,11 @@ jobs:
     steps:
       # The newest main, not the commit that started the run: a run that waited behind another would miss that one's
       # index commit, and its own push would be refused.
+      # The whole history: the index names the last commit that changed the games or protocols.
       - uses: actions/checkout@v7
         with:
           ref: main
+          fetch-depth: 0
       - name: Write the index
         env:
           GH_TOKEN: ${{ github.token }}
@@ -37,7 +39,7 @@ jobs:
           if ! git diff --quiet -- index.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit --message "Index for $(git rev-parse --short HEAD)" -- index.json
+            git commit --message "Index for $(git log -1 --format=%h -- games protocols)" -- index.json
             # A merge landing after the checkout refuses the push. The index still holds on top of it: it names its commit.
             git push || { git pull --rebase origin main && git push; }
           fi

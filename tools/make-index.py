@@ -147,7 +147,9 @@ def main():
     if is_check:
         print(f"make-index.py: {len(games)} games, {len(protocols)} protocols, ready to index")
     else:
-        index = {"index": INDEX_FORMAT, "commit": git("rev-parse", "HEAD"), "lookoutVersion": lookout_version, "games": games,
+        # The last commit that changed them, not HEAD: a run on top of an index commit then changes nothing.
+        commit = git("log", "-1", "--format=%H", "--", "games", "protocols")
+        index = {"index": INDEX_FORMAT, "commit": commit, "lookoutVersion": lookout_version, "games": games,
             "protocols": protocols}
 
         (ROOT / "index.json").write_text(json.dumps(index, indent="\t", ensure_ascii=False) + "\n", encoding="utf-8")
