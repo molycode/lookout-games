@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "ae2c31d26d5881828b4a18a32da1a5ee079a042c",
+	"commit": "02f1f5c50c40a58dbf93a2fbb52e9fa3a7443228",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -177,8 +177,8 @@
 			"protocol": "quake2",
 			"files": {
 				"game.json": {
-					"size": 1911,
-					"sha256": "cdc03a8db205c762326438e3a0bb6c2cff6284bd6fdd576d925577dfe231e723"
+					"size": 2032,
+					"sha256": "04561064cc0f58f268c8674e3d89ee029b9f149e0f80f4f74bd1b404f34af234"
 				},
 				"icon.png": {
 					"size": 1079,
