@@ -4,7 +4,7 @@
 	"protocol": "quake2",
 	"//text": "Quake 2 engines mark coloured text with the high bit, which only their own font can show.",
 	"text": { "encoding": "ascii7" },
-	"//masters": "master1 and master2.kingpin.info speak only GameSpy's TCP protocol, never the Quake 2 query.",
+	"//masters": "master1, master2 and master3.kingpin.info list only over GameSpy's TCP protocol, never the Quake 2 query: add one at port 28900 with protocol gamespy1, masterGame kingpin and port offset 10 (Lookout 1.4 or later).",
 	"masters": [
 		{ "host": "master.kingpin.info", "port": 27900 }
 	],
