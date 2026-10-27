@@ -1,20 +1,28 @@
 {
 	"format": 1,
 	"name": "Kingpin: Life of Crime",
-	"protocol": "quake2",
+	"protocol": "gamespy1",
+	"protocolOptions": { "masterGame": "kingpin" },
+	"//queryPortOffset": "Servers answer GameSpy queries 10 ports below the one players join; their reply names that port.",
+	"queryPortOffset": -10,
 	"//text": "Quake 2 engines mark coloured text with the high bit, which only their own font can show.",
 	"text": { "encoding": "ascii7" },
-	"//masters": "master1, master2 and master3.kingpin.info list only over GameSpy's TCP protocol, never the Quake 2 query: add one at port 28900 with protocol gamespy1, masterGame kingpin and port offset 10 (Lookout 1.4 or later).",
+	"//masters": "Masters list over GameSpy's TCP protocol on 28900; 27900 is where servers send their heartbeats.",
 	"masters": [
-		{ "host": "master.kingpin.info", "port": 27900 }
+		{ "host": "master.kingpin.info", "port": 28900 },
+		{ "host": "master1.kingpin.info", "port": 28900 },
+		{ "host": "master2.kingpin.info", "port": 28900 },
+		{ "host": "master3.kingpin.info", "port": 28900 },
+		{ "host": "master4.kingpin.info", "port": 28900 }
 	],
 	"keys": {
 		"hostname": "hostname",
 		"map": "mapname",
-		"maxPlayers": "maxclients",
+		"//maxPlayers": "kpded2 leaves its reserved slots out of maxplayers, so a server whose public slots are full counts as full.",
+		"maxPlayers": "maxplayers",
 		"password": "password",
-		"//mods": "The gamename is the mod's own title (\"Monkey Mod v2.1\").",
-		"mods": [ "gamename", "game" ]
+		"//mods": "The gametype is the mod's own title (\"Monkey Mod v2.1\").",
+		"mods": [ "gametype", "game" ]
 	},
 	"//modes": "In order: bagman sets deathmatch as well as teamplay.",
 	"modes": [
