@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "02f1f5c50c40a58dbf93a2fbb52e9fa3a7443228",
+	"commit": "5cb95abadfce0d16d9f42026ab9598d983fed50f",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -174,11 +174,11 @@
 		"kingpin": {
 			"name": "Kingpin: Life of Crime",
 			"format": 1,
-			"protocol": "quake2",
+			"protocol": "gamespy1",
 			"files": {
 				"game.json": {
-					"size": 2032,
-					"sha256": "04561064cc0f58f268c8674e3d89ee029b9f149e0f80f4f74bd1b404f34af234"
+					"size": 2454,
+					"sha256": "2980677fe66e76710d55eb18a468ca9b561831743cc19adc635b7492092a0649"
 				},
 				"icon.png": {
 					"size": 1079,
