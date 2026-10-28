@@ -19,6 +19,14 @@
 		"//password": "SiN's GameSpy reply never says whether a server wants a password, so none shows as needing one.",
 		"password": "password"
 	},
+	"launch": {
+		"//desktopFiles": "From Dominatrix's CD installer; its archive, which Steam and GOG owners fill with the game's files, comes with none.",
+		"desktopFiles": [ "rohit_itch_io-sin_1.desktop" ],
+		"//installDir": "Where Dominatrix's CD installer puts the game for a user who is not root.",
+		"installDir": "sin",
+		"program": "sin",
+		"requiredFiles": [ "base/game.so", "base/pak0.sin" ]
+	},
 	"join": {
 		"arguments": [ "+connect", "{address}" ],
 		"passwordArguments": [ "+set", "password", "{password}", "+connect", "{address}" ],
