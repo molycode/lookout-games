@@ -1,0 +1,9 @@
+SiN icon (icon.png)
+
+The game's own icon, as Steam serves it for SiN Gold (app 1313):
+https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1313/da2e192de0991e9b772e394455a59863f514cf6a.ico
+Its 48 x 48 full-colour image, scaled to 144 x 144 by repeating each pixel 3 x 3.
+
+Licence: none stated.
+
+Game names, logos and marks belong to their owners; Lookout shows this icon only to say which game is which.
