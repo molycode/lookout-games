@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "d7a58e9de7d9ac74290efe3af6aa8e3d765c28f1",
+	"commit": "baa243f2abbf47184e687fecebc01f804bbe7794",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -342,6 +342,14 @@
 				"game.json": {
 					"size": 1460,
 					"sha256": "d040710643f8170088806927badf36a3165a7c796add700685d5f5ee5a842cab"
+				},
+				"icon.png": {
+					"size": 3055,
+					"sha256": "57fdf3b7a39f1830521e0780a9233c55d94bbfce893894a947b43fb778c0092d"
+				},
+				"icon-licence.txt": {
+					"size": 424,
+					"sha256": "467c5ebf97fd1e9e9a954f44d3d3ab9601a7290b747e001b928ab8e4c3135bae"
 				}
 			}
 		},
