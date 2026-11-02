@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Unreal Tournament",
 	"protocol": "gamespy1",
 	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
@@ -31,12 +31,22 @@
 		{ "key": "gametype", "value": "LastManStanding", "label": "Last Man Standing" }
 	],
 	"launch": {
-		"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
-		"desktopFiles": [ "OldUnreal-UnrealTournament.desktop" ],
-		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
-		"installDir": ".local/share/OldUnreal/UnrealTournament",
-		"program": "System/ut-bin-amd64",
-		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		"linux": {
+			"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
+			"desktopFiles": [ "OldUnreal-UnrealTournament.desktop" ],
+			"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+			"installDir": ".local/share/OldUnreal/UnrealTournament",
+			"program": "System/ut-bin-amd64",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		},
+		"windows": {
+			"steamAppId": 13240,
+			"gogId": 1207658692,
+			"//installDirs": "Where the CD and OldUnreal's installer put it.",
+			"installDirs": [ "{systemDrive}/UnrealTournament" ],
+			"program": "System/UnrealTournament.exe",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		}
 	},
 	"join": {
 		"//arguments": "The address is the game's URL; each option follows it after a '?'.",

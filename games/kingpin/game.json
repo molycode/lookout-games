@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Kingpin: Life of Crime",
 	"protocol": "gamespy1",
 	"protocolOptions": { "masterGame": "kingpin" },
@@ -31,11 +31,21 @@
 		{ "key": "deathmatch", "value": "1", "label": "Deathmatch" }
 	],
 	"launch": {
-		"//desktopFiles": "Only names seen on real installs; Steam's Kingpin.desktop runs a steam:// URL, which drops the connect arguments.",
-		"desktopFiles": [ "kingpin-native.desktop" ],
-		"installDir": "Games/Kingpin",
-		"program": "run-game.sh",
-		"requiredFiles": [ "kingpin.x86", "main/pak0.pak" ]
+		"linux": {
+			"//desktopFiles": "Only names seen on real installs; Steam's Kingpin.desktop runs a steam:// URL, which drops the connect arguments.",
+			"desktopFiles": [ "kingpin-native.desktop" ],
+			"installDir": "Games/Kingpin",
+			"program": "run-game.sh",
+			"requiredFiles": [ "kingpin.x86", "main/pak0.pak" ]
+		},
+		"windows": {
+			"steamAppId": 38430,
+			"gogId": 9,
+			"//installDirs": "Where the CD installs it.",
+			"installDirs": [ "{programFilesX86}/Kingpin" ],
+			"program": "kingpin.exe",
+			"requiredFiles": [ "main/pak0.pak" ]
+		}
 	},
 	"join": {
 		"//arguments": "Each its own argument: run-game.sh recognises a join by \" +connect \".",
