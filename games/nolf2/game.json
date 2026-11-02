@@ -16,13 +16,12 @@
 		"map": "mapname",
 		"numPlayers": "numplayers",
 		"maxPlayers": "maxplayers",
-		"password": "password",
-		"mods": [ "gamever" ]
+		"password": "password"
 	},
 	"modes": [
-		{ "key": "gametype", "value": "Deathmatch", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "DeathMatch", "label": "Deathmatch" },
 		{ "key": "gametype", "value": "Cooperative", "label": "Cooperative" },
-		{ "key": "gametype", "value": "Doomsday", "label": "Doomsday" }
+		{ "key": "gametype", "value": "DoomsDay", "label": "Doomsday" }
 	],
 	"join": {
 		"arguments": [ "-jointype", "internet", "-join", "{address}" ],

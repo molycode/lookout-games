@@ -14,12 +14,11 @@
 		"map": "mapname",
 		"numPlayers": "numplayers",
 		"maxPlayers": "maxplayers",
-		"password": "password",
-		"mods": [ "gamever" ]
+		"password": "password"
 	},
 	"modes": [
 		{ "key": "gametype", "value": "deathmatch", "label": "Deathmatch" },
-		{ "key": "gametype", "value": "hsa", "label": "H.A.R.M. vs. UNITY" }
+		{ "key": "gametype", "value": "H.A.R.M. vs. UNITY", "label": "H.A.R.M. vs. UNITY" }
 	],
 	"join": {
 		"arguments": [ "-jointype", "internet", "-join", "{address}" ],
