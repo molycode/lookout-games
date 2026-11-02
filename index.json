@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "20a2ae6abf948cff008c1d4ad3b3c70400197275",
+	"commit": "24f3ee51adeb38646fba60eb54cc0c1c4aff245f",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -228,6 +228,28 @@
 				}
 			}
 		},
+		"nolf": {
+			"name": "The Operative: No One Lives Forever",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 824,
+					"sha256": "c4937a6e3ff65689bb129e257263435e2a5aa392037be51dbace2501e1e32a72"
+				}
+			}
+		},
+		"nolf2": {
+			"name": "No One Lives Forever 2",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 976,
+					"sha256": "86253d40a369d4d1e12229dab4179fc7dc50ec1fbd583bd2150ed4a9896dd746"
+				}
+			}
+		},
 		"openarena": {
 			"name": "OpenArena",
 			"format": 1,
@@ -383,6 +405,17 @@
 				}
 			}
 		},
+		"swat4": {
+			"name": "SWAT 4",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1094,
+					"sha256": "ec6ccccccecaf5caacd8dd8ccfd2d8ed19cf9c5bd252d940cdf7faf50b35822f"
+				}
+			}
+		},
 		"tremulous": {
 			"name": "Tremulous",
 			"format": 1,
@@ -494,6 +527,17 @@
 				"icon-licence.txt": {
 					"size": 606,
 					"sha256": "26b078a24ea416d9d7bf0dad2eee48860b665735c7c274278ac6dadb464424b0"
+				}
+			}
+		},
+		"vietcong": {
+			"name": "Vietcong",
+			"format": 1,
+			"protocol": "gamespy1",
+			"files": {
+				"game.json": {
+					"size": 1525,
+					"sha256": "b74e1ee55ab2923eec55871c3d047b7078b87d5e69c22610d02b91f6ff13cc4c"
 				}
 			}
 		},
