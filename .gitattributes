@@ -1,0 +1,2 @@
+# Lookout checks every file by its SHA-256, so a checkout keeps the bytes as committed, line endings included.
+* -text
