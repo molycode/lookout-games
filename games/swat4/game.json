@@ -1,0 +1,37 @@
+{
+	"format": 1,
+	"name": "SWAT 4",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
+	"queryPortOffset": 1,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "swat4" },
+	"masters": [
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"mods": [ "gamevariant" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "CO-OP", "label": "Cooperative" },
+		{ "key": "gametype", "value": "Barricaded Suspects", "label": "Barricaded Suspects" },
+		{ "key": "gametype", "value": "VIP Escort", "label": "VIP Escort" },
+		{ "key": "gametype", "value": "Rapid Deployment", "label": "Rapid Deployment" },
+		{ "key": "gametype", "value": "Smash And Grab", "label": "Smash and Grab" }
+	],
+	"join": {
+		"arguments": [ "{address}" ],
+		"passwordArguments": [ "{address}?password={password}" ],
+		"password": {
+			"maxLength": 1024,
+			"refusedCharacters": " ?#"
+		}
+	}
+}

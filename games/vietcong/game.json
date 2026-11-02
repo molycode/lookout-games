@@ -1,0 +1,37 @@
+{
+	"format": 1,
+	"name": "Vietcong",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "Servers answer queries 10000 ports above the one players join (query port 15425 for join port 5425).",
+	"queryPortOffset": 10000,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "vietcong" },
+	"masters": [
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password",
+		"mods": [ "gamever" ]
+	},
+	"modes": [
+		{ "key": "gametype", "value": "CTF", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "ATG", "label": "Assault on Team Goal" },
+		{ "key": "gametype", "value": "DM", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "TDM", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "Coop", "label": "Co-op" }
+	],
+	"join": {
+		"arguments": [ "-jointype", "internet", "-join", "{address}" ],
+		"passwordArguments": [ "-jointype", "internet", "-join", "{address}", "-password", "{password}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \""
+		}
+	}
+}
