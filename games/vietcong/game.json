@@ -1,0 +1,41 @@
+{
+	"format": 1,
+	"name": "Vietcong",
+	"protocol": "gamespy1",
+	"//queryPortOffset": "A server usually answers queries 10000 ports above the one players join (15425 for 5425); a host running several may pair them otherwise.",
+	"queryPortOffset": 10000,
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "vietcong" },
+	"masters": [
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password"
+	},
+	"//modes": "Servers send co-op as Coop, COOP, coop or CooP, and a value matches only as written.",
+	"modes": [
+		{ "key": "gametype", "value": "CTF", "label": "Capture the Flag" },
+		{ "key": "gametype", "value": "ATG", "label": "Assault on Team Goal" },
+		{ "key": "gametype", "value": "ATG_B", "label": "Assault on Team Goal" },
+		{ "key": "gametype", "value": "DM", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "TDM", "label": "Team Deathmatch" },
+		{ "key": "gametype", "value": "Coop", "label": "Co-op" },
+		{ "key": "gametype", "value": "COOP", "label": "Co-op" },
+		{ "key": "gametype", "value": "coop", "label": "Co-op" },
+		{ "key": "gametype", "value": "CooP", "label": "Co-op" }
+	],
+	"join": {
+		"arguments": [ "-jointype", "internet", "-join", "{address}" ],
+		"passwordArguments": [ "-jointype", "internet", "-join", "{address}", "-password", "{password}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \""
+		}
+	}
+}

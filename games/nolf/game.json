@@ -1,0 +1,31 @@
+{
+	"format": 1,
+	"name": "The Operative: No One Lives Forever",
+	"protocol": "gamespy1",
+	"text": {
+		"encoding": "utf8OrWindows1252"
+	},
+	"protocolOptions": { "masterGame": "nolf" },
+	"masters": [
+		{ "host": "master.openspy.net", "port": 28900 }
+	],
+	"keys": {
+		"hostname": "hostname",
+		"map": "mapname",
+		"numPlayers": "numplayers",
+		"maxPlayers": "maxplayers",
+		"password": "password"
+	},
+	"modes": [
+		{ "key": "gametype", "value": "deathmatch", "label": "Deathmatch" },
+		{ "key": "gametype", "value": "H.A.R.M. vs. UNITY", "label": "H.A.R.M. vs. UNITY" }
+	],
+	"join": {
+		"arguments": [ "-jointype", "internet", "-join", "{address}" ],
+		"passwordArguments": [ "-jointype", "internet", "-join", "{address}", "-password", "{password}" ],
+		"password": {
+			"maxLength": 63,
+			"refusedCharacters": " \""
+		}
+	}
+}
