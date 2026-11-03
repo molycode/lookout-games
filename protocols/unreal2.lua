@@ -166,6 +166,7 @@ local function readInfo(reader, state)
 	addRule(state.info, "maxplayers", maxPlayers)
 	addRule(state.info, "skill", skill)
 	state.joinPort = (port >= 1 and port <= 65535) and port or nil
+	state.numPlayers = numPlayers
 	state.hasInfo = true
 
 	return true
@@ -209,6 +210,12 @@ local function readPlayers(reader, state)
 	end
 
 	return not reader.isTruncated
+end
+
+local function ask(state, command)
+	state.asked = command
+
+	return { send = { QueryHeader .. string.char(command) } }
 end
 
 -- For the client's own short ASCII strings, whose length fits the first byte of a compact index.
@@ -265,7 +272,7 @@ end
 
 return {
 	api = 2,
-	version = 1,
+	version = 2,
 
 	master = {
 		transport = "tcp",
@@ -319,10 +326,11 @@ return {
 			state.hasPassword = false
 			state.seen = {}
 
-			return { send = { QueryHeader .. "\0", QueryHeader .. "\1", QueryHeader .. "\2" } }
+			return ask(state, InfoCommand)
 		end,
 
-		-- Only the info packet answers: without it a resend asks again, and what was already read comes back the same.
+		-- Some servers answer only the first of queries that arrive together, so each waits for the answer before it.
+		-- A later packet of an earlier answer is read but answers nothing, or it would stop the step's resend.
 		receive = function(state, datagram)
 			if #datagram < ReplyHeaderSize or state.seen[datagram] then
 				return nil
@@ -346,7 +354,20 @@ return {
 				return { reason = "malformed" }
 			end
 
-			return state.hasInfo and { quiet = QuietMs } or nil
+			if command ~= state.asked then
+				return nil
+			end
+
+			if command == InfoCommand then
+				return ask(state, RulesCommand)
+			end
+
+			-- An empty server never answers the players query.
+			if command == RulesCommand and state.numPlayers > 0 then
+				return ask(state, PlayersCommand)
+			end
+
+			return { quiet = QuietMs }
 		end,
 
 		finish = function(state)
