@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "24f3ee51adeb38646fba60eb54cc0c1c4aff245f",
+	"commit": "5d775980e0efa8b2066bcc9f1ab75647d19c2313",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -173,12 +173,12 @@
 		},
 		"kingpin": {
 			"name": "Kingpin: Life of Crime",
-			"format": 1,
+			"format": 3,
 			"protocol": "gamespy1",
 			"files": {
 				"game.json": {
-					"size": 2454,
-					"sha256": "2980677fe66e76710d55eb18a468ca9b561831743cc19adc635b7492092a0649"
+					"size": 2704,
+					"sha256": "1ef75daba3a1d882f39e301e66c2e80ab1d16cfe045ceb8044f923f377f26d03"
 				},
 				"icon.png": {
 					"size": 1079,
@@ -328,12 +328,12 @@
 		},
 		"rtcw": {
 			"name": "Return to Castle Wolfenstein",
-			"format": 1,
+			"format": 3,
 			"protocol": "quake3",
 			"files": {
 				"game.json": {
-					"size": 1978,
-					"sha256": "5affb77d79eb4ce517424189bcf09b1ab524f820897ffce3946dc899d0344155"
+					"size": 2357,
+					"sha256": "9d6df99ee600bbe2139cf8da672346ccfd39aebcecd1d31b6275ed562e9c7a37"
 				},
 				"icon.png": {
 					"size": 13872,
@@ -358,12 +358,12 @@
 		},
 		"sin": {
 			"name": "SiN",
-			"format": 1,
+			"format": 3,
 			"protocol": "gamespy1",
 			"files": {
 				"game.json": {
-					"size": 1863,
-					"sha256": "5ddee58cdf823b0f337db0d8f76fa816528c377c83e777eb340717391fecd7f1"
+					"size": 2018,
+					"sha256": "69315fb9f4413376a4b75086800965703b0db6937873459d3de26c5c8e1e8e29"
 				},
 				"icon.png": {
 					"size": 3055,
@@ -437,12 +437,12 @@
 		},
 		"unreal": {
 			"name": "Unreal",
-			"format": 1,
+			"format": 3,
 			"protocol": "gamespy1",
 			"files": {
 				"game.json": {
-					"size": 1841,
-					"sha256": "9647a6b93de382c8b66c37c890a01279f8d3f3be056bbbd843ab2708d6a5be05"
+					"size": 2314,
+					"sha256": "1cb3e90e1a64cd89e56c91266fb78c383fd3de3bbf0d30b2447a0c3c06f72cf7"
 				},
 				"icon.png": {
 					"size": 104288,
@@ -456,12 +456,12 @@
 		},
 		"unvanquished": {
 			"name": "Unvanquished",
-			"format": 1,
+			"format": 3,
 			"protocol": "quake3",
 			"files": {
 				"game.json": {
-					"size": 1909,
-					"sha256": "eeb8eacf792558ce630e73c3da9523854ffebdbb1e5cf7bac53b1738da4c6748"
+					"size": 2222,
+					"sha256": "cd5fd5abfa64d3f53aa052849d75c6817e6bdaffe9b9ae9ec136e9f9ba57ea56"
 				},
 				"icon.png": {
 					"size": 81883,
@@ -494,12 +494,12 @@
 		},
 		"ut2004": {
 			"name": "Unreal Tournament 2004",
-			"format": 1,
+			"format": 3,
 			"protocol": "unreal2",
 			"files": {
 				"game.json": {
-					"size": 2750,
-					"sha256": "cc5bcbac097bc04aa82433b9e479c7baae7599413bc357c6f19012e78f9ad535"
+					"size": 3121,
+					"sha256": "c7308061fa226dc6da3a362d274aaebf8c7378f1bd9fedb065808370d8ad93e9"
 				},
 				"icon.png": {
 					"size": 81878,
@@ -513,12 +513,12 @@
 		},
 		"ut99": {
 			"name": "Unreal Tournament",
-			"format": 1,
+			"format": 3,
 			"protocol": "gamespy1",
 			"files": {
 				"game.json": {
-					"size": 2052,
-					"sha256": "4325035b8c7c5906cecb9423c1dfc3dfc405ce953e1f4a4ea92d4c78b266cb4e"
+					"size": 2395,
+					"sha256": "2bcc066a61536c7b039da2ed6dbbca36b5af277826b353d13b89d607554c647a"
 				},
 				"icon.png": {
 					"size": 104288,
