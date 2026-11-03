@@ -1,4 +1,5 @@
-# Checks every game and protocol with the latest Lookout release, as `lookout --check` does on a contributor's machine.
+# Checks every game, protocol and store with the latest Lookout release, as `lookout --check` does on a contributor's
+# machine; a release before 1.7 does not read stores yet, and make-index.py checks what the index needs of them.
 name: Check
 
 on:
@@ -31,7 +32,7 @@ jobs:
         run: |
           gh release download --repo molycode/lookout --pattern "lookout-*-x86_64.tar.xz" --dir "$RUNNER_TEMP/lookout"
           tar -xJf "$RUNNER_TEMP"/lookout/lookout-*-x86_64.tar.xz -C "$RUNNER_TEMP/lookout"
-      - name: Check the games and protocols
+      - name: Check the games, protocols and stores
         run: |
           lookout="$(find "$RUNNER_TEMP/lookout" -type f -name lookout -perm -u+x | head -n 1)"
 

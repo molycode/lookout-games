@@ -1,8 +1,8 @@
 # Lookout games
 
-The game descriptions and protocol scripts that [Lookout](https://github.com/molycode/lookout), a game server browser
-for Linux, downloads. Lookout itself knows no game: its download dialog lists what is here, and installs, updates and
-removes it.
+The game descriptions, protocol scripts and store descriptions that [Lookout](https://github.com/molycode/lookout), a
+game server browser for Linux and Windows, downloads. Lookout itself knows no game: its download dialog lists what is
+here, and installs, updates and removes it.
 
 ## What is here
 
@@ -13,6 +13,10 @@ removes it.
   it comes from and under what licence. A game without an icon is shown with a stand-in.
 - `protocols/<name>.lua`: a protocol script, which the games that speak it name. It runs in a sandbox and only turns
   bytes into requests and replies; Lookout does the networking.
+- `stores/<key>.json`: how Lookout starts a game through a store it was bought in, such as Steam: the arguments that
+  start a game there, `{id}` standing for the game's id in that store, and where the store and its program are on
+  Linux and Windows. A game names its ids in `launch.stores` by the store's key (format 4), or as format 3's
+  `steamAppId` and `gogId`; Lookout offers to start it through a store only where the game is installed in it.
 - `index.json`: what Lookout downloads from. `tools/make-index.py` writes it after every merge; never edit it by
   hand, and a pull request that changes it is refused.
 
@@ -43,7 +47,16 @@ server that shows it, rather than working around it here. A field added for it c
 higher `format`; a game that uses it sets that `format`, and an older Lookout offers it as needing a newer version
 instead of failing on it.
 
-Before opening a pull request, check the folder with Lookout 1.3 or newer:
+## Adding a store
+
+A store is worth a file only if it passes the arguments after a game's id on to the game, as Steam's `-applaunch`
+does, or Lookout's join arguments never reach it. Its file names the programs Lookout may start and where to find
+them; it cannot run anything else. The check for whether a game is installed in the store is part of Lookout
+(`libraries`), so a store that needs a new kind of check comes with a Lookout release and a higher `format`.
+
+## Checking
+
+Before opening a pull request, check the folder with Lookout 1.3 or newer (1.7 or newer for stores):
 
     lookout --check /path/to/lookout-games
 
