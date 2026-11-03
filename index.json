@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "a72da880a3c8361c4e5591ec1dbcb46388c6fd01",
+	"commit": "0203c3029f59846a797b5f9fcb8f995249b61fb6",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -188,7 +188,10 @@
 					"size": 286,
 					"sha256": "9ec9d2a9deff92798b3d9ab61bcf54650d446934292889910e9c048bb02f4eac"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"mohaa": {
 			"name": "Medal of Honor: Allied Assault",
@@ -343,7 +346,10 @@
 					"size": 36486,
 					"sha256": "e7a938991ed98ad8de562cef2e135f0d764fcea1d69dd9dab437401b0c723ee8"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"rune": {
 			"name": "Rune",
@@ -373,7 +379,10 @@
 					"size": 424,
 					"sha256": "467c5ebf97fd1e9e9a954f44d3d3ab9601a7290b747e001b928ab8e4c3135bae"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"smokinguns": {
 			"name": "Smokin' Guns",
@@ -452,7 +461,10 @@
 					"size": 508,
 					"sha256": "dd2b1a06420769d30d956c3e2ac35c3cfa556cd7b807016c63974c77982283b7"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"unvanquished": {
 			"name": "Unvanquished",
@@ -509,7 +521,10 @@
 					"size": 495,
 					"sha256": "837448a8b74de65fdeecd330cae06c102a5caf21868bc8761f0d1ef0fe47ba4a"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"ut99": {
 			"name": "Unreal Tournament",
@@ -528,7 +543,10 @@
 					"size": 606,
 					"sha256": "26b078a24ea416d9d7bf0dad2eee48860b665735c7c274278ac6dadb464424b0"
 				}
-			}
+			},
+			"stores": [
+				"steam"
+			]
 		},
 		"vietcong": {
 			"name": "Vietcong",
@@ -610,6 +628,13 @@
 			"version": 2,
 			"size": 10973,
 			"sha256": "bc7f852db135eda836ef2868f9e0a77929f76d6dec7078a7601cbe20628f419a"
+		}
+	},
+	"stores": {
+		"steam": {
+			"format": 1,
+			"size": 961,
+			"sha256": "cea349e132a5024d89ca1cdfe88e4f6a0594d61166be7a3c5f78b1448263ad3b"
 		}
 	}
 }
