@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Unreal Tournament 2004",
 	"protocol": "unreal2",
 	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
@@ -34,12 +34,22 @@
 		{ "key": "gametype", "value": "Invasion", "label": "Invasion" }
 	],
 	"launch": {
-		"//desktopFiles": "From OldUnreal's installer, the AUR and nixpkgs packages, and Flathub; each passes its arguments to the game.",
-		"desktopFiles": [ "OldUnreal-UT2004.desktop", "ut2004.desktop", "com.epicgames.ut2004.desktop" ],
-		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
-		"installDir": ".local/share/OldUnreal/UT2004",
-		"program": "System/UT2004",
-		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		"linux": {
+			"//desktopFiles": "From OldUnreal's installer, the AUR and nixpkgs packages, and Flathub; each passes its arguments to the game.",
+			"desktopFiles": [ "OldUnreal-UT2004.desktop", "ut2004.desktop", "com.epicgames.ut2004.desktop" ],
+			"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+			"installDir": ".local/share/OldUnreal/UT2004",
+			"program": "System/UT2004",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		},
+		"windows": {
+			"steamAppId": 13230,
+			"gogId": 1207658691,
+			"//installDirs": "Where OldUnreal's installer puts it, and the retail DVD.",
+			"installDirs": [ "{systemDrive}/UnrealTournament2004", "{systemDrive}/UT2004" ],
+			"program": "System/UT2004.exe",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		}
 	},
 	"join": {
 		"//arguments": "The address is the game's URL; each option follows it after a '?'.",

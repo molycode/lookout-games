@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Unvanquished",
 	"protocol": "quake3",
 	"text": {
@@ -32,11 +32,20 @@
 		{ "key": "gamename", "value": "smokinguns" }
 	],
 	"launch": {
-		"//desktopFiles": "From Flathub, the updater and the AUR; each passes its arguments to the game.",
-		"desktopFiles": [ "net.unvanquished.Unvanquished.desktop", "unvanquished.desktop" ],
-		"installDir": ".local/share/unvanquished/base",
-		"program": "updater",
-		"requiredFiles": [ "updater", "daemon" ]
+		"linux": {
+			"//desktopFiles": "From Flathub, the updater and the AUR; each passes its arguments to the game.",
+			"desktopFiles": [ "net.unvanquished.Unvanquished.desktop", "unvanquished.desktop" ],
+			"installDir": ".local/share/unvanquished/base",
+			"program": "updater",
+			"requiredFiles": [ "updater", "daemon" ]
+		},
+		"windows": {
+			"//installDirs": "Where the official updater installs it.",
+			"installDirs": [ "{programFiles}/Unvanquished" ],
+			"//program": "The updater takes the unv:// URL; daemon.exe does not.",
+			"program": "updater.exe",
+			"requiredFiles": [ "updater.exe", "daemon.exe" ]
+		}
 	},
 	"join": {
 		"//arguments": "The desktop entries and the updater take the server as one unv:// URL.",

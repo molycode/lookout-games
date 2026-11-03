@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "SiN",
 	"protocol": "gamespy1",
 	"protocolOptions": { "masterGame": "sin" },
@@ -20,12 +20,20 @@
 		"password": "password"
 	},
 	"launch": {
-		"//desktopFiles": "From Dominatrix's CD installer; its archive, which Steam and GOG owners fill with the game's files, comes with none.",
-		"desktopFiles": [ "rohit_itch_io-sin_1.desktop" ],
-		"//installDir": "Where Dominatrix's CD installer puts the game for a user who is not root.",
-		"installDir": "sin",
-		"program": "sin",
-		"requiredFiles": [ "base/game.so", "base/pak0.sin" ]
+		"linux": {
+			"//desktopFiles": "From Dominatrix's CD installer; its archive, which Steam and GOG owners fill with the game's files, comes with none.",
+			"desktopFiles": [ "rohit_itch_io-sin_1.desktop" ],
+			"//installDir": "Where Dominatrix's CD installer puts the game for a user who is not root.",
+			"installDir": "sin",
+			"program": "sin",
+			"requiredFiles": [ "base/game.so", "base/pak0.sin" ]
+		},
+		"windows": {
+			"steamAppId": 1313,
+			"gogId": 1207660343,
+			"program": "sin.exe",
+			"requiredFiles": [ "base/pak0.sin" ]
+		}
 	},
 	"join": {
 		"arguments": [ "+connect", "{address}" ],

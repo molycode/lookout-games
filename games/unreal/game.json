@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Unreal",
 	"protocol": "gamespy1",
 	"//queryPortOffset": "Servers answer queries on the port after the one players join.",
@@ -32,12 +32,23 @@
 		{ "key": "gametype", "value": "Coop Game", "label": "Co-op" }
 	],
 	"launch": {
-		"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
-		"desktopFiles": [ "OldUnreal-UnrealGold.desktop" ],
-		"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
-		"installDir": ".local/share/OldUnreal/UnrealGold",
-		"program": "System64/unreal-bin-amd64",
-		"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		"linux": {
+			"//desktopFiles": "From OldUnreal's installer, which passes the URL to the game.",
+			"desktopFiles": [ "OldUnreal-UnrealGold.desktop" ],
+			"//installDir": "Where OldUnreal's installer puts the game, and its x86_64 binary.",
+			"installDir": ".local/share/OldUnreal/UnrealGold",
+			"program": "System64/unreal-bin-amd64",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		},
+		"windows": {
+			"steamAppId": 13250,
+			"gogId": 1207658679,
+			"//installDirs": "Where OldUnreal's installer and the first CD put it, and where the Gold CD does.",
+			"installDirs": [ "{systemDrive}/Unreal", "{systemDrive}/UnrealGold" ],
+			"//program": "Every install has it; OldUnreal's 227 adds a 64-bit one in System64.",
+			"program": "System/Unreal.exe",
+			"requiredFiles": [ "System/Core.u", "System/Engine.u", "System/Default.ini" ]
+		}
 	},
 	"join": {
 		"//arguments": "The address is the game's URL; each option follows it after a '?'.",

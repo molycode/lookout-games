@@ -1,5 +1,5 @@
 {
-	"format": 1,
+	"format": 3,
 	"name": "Return to Castle Wolfenstein",
 	"protocol": "quake3",
 	"text": {
@@ -33,10 +33,21 @@
 		{ "key": "g_gametype", "value": "8", "label": "Capture & Hold" }
 	],
 	"launch": {
-		"desktopFiles": [ "id-linux-rtcw-mp.desktop" ],
-		"installDir": "Games/id-linux",
-		"program": "rtcw-mp",
-		"requiredFiles": [ "kit/id-run", "rtcw/.installed-rtcw-mp" ]
+		"linux": {
+			"desktopFiles": [ "id-linux-rtcw-mp.desktop" ],
+			"installDir": "Games/id-linux",
+			"program": "rtcw-mp",
+			"requiredFiles": [ "kit/id-run", "rtcw/.installed-rtcw-mp" ]
+		},
+		"windows": {
+			"steamAppId": 9010,
+			"//gogId": "The installable game; the store's 1443699418 is a pack without installers.",
+			"gogId": 1441704976,
+			"//installDirs": "Where the retail CD installs it.",
+			"installDirs": [ "{programFilesX86}/Return to Castle Wolfenstein" ],
+			"program": "WolfMP.exe",
+			"requiredFiles": [ "Main/mp_pak0.pk3" ]
+		}
 	},
 	"join": {
 		"arguments": [ "+connect", "{address}" ],
