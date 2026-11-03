@@ -1,0 +1,18 @@
+{
+	"format": 1,
+	"name": "Steam",
+	"//arguments": "Steam passes on to the game what follows the app id, so Lookout's join arguments reach it.",
+	"arguments": [ "-applaunch", "{id}" ],
+	"libraries": "steam",
+	"windows": [
+		{ "folder": { "root": "HKCU", "key": "Software\\Valve\\Steam", "value": "SteamPath" }, "program": "steam.exe" },
+		{ "folder": { "root": "HKLM", "key": "SOFTWARE\\Valve\\Steam", "value": "InstallPath" }, "program": "steam.exe" }
+	],
+	"//linux": "The distribution's Steam, the snap's and the Flatpak's, each with the folder it keeps its libraries in.",
+	"linux": [
+		{ "folder": "{dataHome}/Steam", "programs": [ "steam" ] },
+		{ "folder": "{home}/snap/steam/common/.local/share/Steam", "programs": [ "/snap/bin/steam" ] },
+		{ "folder": "{home}/.var/app/com.valvesoftware.Steam/.local/share/Steam",
+			"programs": [ "{dataHome}/flatpak/exports/bin/com.valvesoftware.Steam", "/var/lib/flatpak/exports/bin/com.valvesoftware.Steam" ] }
+	]
+}
