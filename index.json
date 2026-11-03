@@ -1,6 +1,6 @@
 {
 	"index": 1,
-	"commit": "5d775980e0efa8b2066bcc9f1ab75647d19c2313",
+	"commit": "21ecd93a9ed7a1f59cf559dcc4d49bac23d08121",
 	"games": {
 		"alienarena": {
 			"name": "Alien Arena",
@@ -607,9 +607,9 @@
 		},
 		"unreal2": {
 			"api": 2,
-			"version": 1,
-			"size": 10496,
-			"sha256": "3bde43f3ea76ddbbd40056f3c690150b240ed81a620dd78a8f3fa7399f5dc106"
+			"version": 2,
+			"size": 10973,
+			"sha256": "bc7f852db135eda836ef2868f9e0a77929f76d6dec7078a7601cbe20628f419a"
 		}
 	}
 }
